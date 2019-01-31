@@ -1,27 +1,38 @@
 {extend name="public:base" /}
-{block name="menu"}用户管理{/block}
+{block name="menu"}会员管理{/block}
 {block name="search"}
         <div class="form-group">
-            <label for="name" class="sr-only">用户名</label>
-            <input type="text" name="name" placeholder="请输入用户名" id="name" class="form-control" value="{$Request.param.name}">
+            <label for="name" class="sr-only">加入时间</label>
+            <input type="text" name="start_date" readonly="readonly" placeholder="选择开始加入时间" id="start_date" class="form-control" value="{$Request.param.start_date}">
         </div>
         <div class="form-group">
-            <label for="email" class="sr-only">邮箱</label>
-            <input type="text" name="email" placeholder="请输入邮箱" id="email" class="form-control" value="{$Request.param.email}">
+            <label for="name" class="sr-only">至</label>
+            <input type="text" name="end_date" readonly="readonly" placeholder="选择结束加入时间" id="end_date" class="form-control" value="{$Request.param.end_date}">
+        </div>
+        <div class="form-group">
+            <label for="name" class="sr-only">会员姓名</label>
+            <input type="text" name="username" placeholder="请输入会员姓名" id="name" class="form-control" value="{$Request.param.username}">
+        </div>
+        <div class="form-group">
+            <label for="email" class="sr-only">手机号码</label>
+            <input type="text" name="mobile" placeholder="请输入手机号码" id="email" class="form-control" value="{$Request.param.mobile}">
         </div>
         {:searchButton()}
 {/block}
 {block name="button-create"}
-    {:createButton(url('user/create'), '创建用户')}
+    {:createButton(url('user/create'), '创建会员')}
 {/block}
 {block name="table-head"}
     <tr>
-        <th>ID</th>
-        <th>用户名</th>
-        <th>邮箱</th>
-        <th>登录IP</th>
-        <th>登录时间</th>
-        <th>创建时间</th>
+        <th>会员编号</th>
+        <th>姓名</th>
+        <th>手机号码</th>
+        <th>微信号</th>
+        <th>会员等级</th>
+        <th>推荐人</th>
+        <th>团队人数</th>
+        <th>一星以上人数</th>
+        <th>加入时间</th>
         <th>操作</th>
     </tr>
 {/block}
@@ -33,20 +44,35 @@
     {else/}
         {foreach $users as $key => $user}
             <tr>
-                <td>{$start + $key}</td>
-                <td>{$user->name}</td>
-                <td>{$user->email}</td>
-                <td>{$user->login_ip}</td>
-                <td>{$user->login_at}</td>
-                <td>{$user->created_at}</td>
+                <td>{$user['id']}</td>
+                <td>{$user['username']}</td>
+                <td>{$user['mobile']}</td>
+                <td>{$user['wechat']}</td>
+                <td>{$user['level']}</td>
+                <td>{$user['recommend_name']}</td>
+                <td>{$user['team_count']}</td>
+                <td>{$user['up_count']}</td>
+                <td>{$user['create_time']|date='Y-m-d H:i:s'}</td>
                 <td>
-                    {:editButton(url('user/edit', ['id' => $user->id ]))}
-                    {:deleteButton(url('user/delete'), $user->id)}
+                    {:editButton(url('user/edit', ['id' => $user['id']]))}
+                    {:deleteButton(url('user/delete'), $user['id'])}
                 </td>
             </tr>
         {/foreach}
     {/if}
 {/block}
 {block name="paginate"}
-    {$users->render()|raw}
+{$users->render()|raw}
+{/block}
+{block name="js"}
+<script type="text/javascript" src="__PLUGINS__/js/laydate/laydate.js"></script>
+<script type="text/javascript">
+//执行一个laydate实例
+laydate.render({
+  elem: '#start_date' //指定元素
+});
+laydate.render({
+  elem: '#end_date' //指定元素
+});
+</script>
 {/block}

@@ -32,7 +32,7 @@ if (!function_exists('createButton')) {
  * 删除按钮
  */
 if (!function_exists('deleteButton')) {
-    function deleteButton( $url, int $id,  $name="删除") {
+    function deleteButton( $url, $id,  $name="删除") {
         return sprintf('<button class="btn btn-danger btn-xs delete" data-url="%s" data=%d type="button"><i class="fa fa-trash"></i> %s</button>', $url, $id, $name);
     }
 }
@@ -50,7 +50,7 @@ if (!function_exists('searchButton')) {
  * 生成密码
  */
 if (!function_exists('generatePassword')) {
-    function generatePassword(  $password, int $algo = PASSWORD_DEFAULT) {
+    function generatePassword(  $password, $algo = PASSWORD_DEFAULT) {
         return password_hash($password, $algo);
     }
 }
