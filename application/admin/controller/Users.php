@@ -7,4 +7,8 @@ class Users extends Base {
         return $this->fetch();
     }
     
+    public function edit(){
+        
+    }
+    
 }
