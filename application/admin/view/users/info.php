@@ -9,4 +9,90 @@
 <h4 class="user_info">会员等级：{$userinfo['level_text']} <a href="{:url('edit',['x' => 'u','id' => $userinfo['id']])}" class="btn btn-default btn-xs">修改等级</a></h4>
 <h4 class="user_info">推荐人：{$userinfo['recommend_name']}</h4>
 <h4 class="user_info">团队成员：{$count}</h4>
+
+<div class="row">
+
+  <div class="col-sm-3">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>普通会员：2人</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>一星会员：2人</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>二星会员：2人</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>三星会员：2人</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>四星会员：2人</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>五星会员：2人</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>六星会员：2人</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+    <div class="col-sm-3">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>七星会员：2人</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+      <div class="col-sm-3">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>八星会员：2人</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+      <div class="col-sm-3">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3>九星会员：2人</h3>
+        <p>...</p>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
 {/block}

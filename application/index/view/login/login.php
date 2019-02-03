@@ -39,8 +39,8 @@
     
     <div class="info_sub">登录</div>
     <div>
-      <div class="register">注册账号</div>
-      <div class="forget">忘记密码</div>
+      <div class="register"><a href="{:url('register')}">注册账号</a></div>
+      <div class="forget"><a href="{:url('find')}">忘记密码</a></div>
     </div>
 </script>
 {/block}
@@ -49,10 +49,10 @@
     require(['tpl', 'core'], function(tpl, core) {
         $('#container').html(tpl('member_info'));
             $('.register').click(function(){
-                location.href = "{:url('register')}";
+                //location.href = "{:url('register')}";
             });
             $('.forget').click(function(){
-              location.href = "{:url('find')}";
+               //location.href = "{:url('find')}";
             });
             
             $('.info_sub').click(function() {
