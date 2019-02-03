@@ -5,6 +5,10 @@ use app\common\Common;
 
 class Base extends Common {
 	
+	public function _empty(){
+		$this->redirect(url('index/index'));
+	}
+	
     protected $user;
     
     protected function initialize(){
