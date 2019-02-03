@@ -17,7 +17,7 @@
       <div class="caption">
         <h3>普通会员：{:count($common)}人</h3>
         {foreach name="common" item="v"}
-        <p>{$v['username']}&nbsp;&nbsp;&nbsp;{$v['mobile']}</p>
+        <p>{$v['username']}&nbsp;{$v['mobile']}</p>
         {/foreach}
       </div>
     </div>
@@ -27,7 +27,7 @@
       <div class="caption">
         <h3>一星会员：{:count($star_user1)}人</h3>
         {foreach name="star_user1" item="v"}
-        <p>姓名：{$v['username']}&nbsp;&nbsp;&nbsp;手机号码：{$v['mobile']}</p>
+        <p>姓名：{$v['username']}&nbsp;手机号：{$v['mobile']}</p>
         {/foreach}
       </div>
     </div>
@@ -37,7 +37,7 @@
       <div class="caption">
         <h3>二星会员：{:count($star_user2)}人</h3>
         {foreach name="star_user2" item="v"}
-        <p>姓名：{$v['username']}&nbsp;&nbsp;&nbsp;手机号码：{$v['mobile']}</p>
+        <p>姓名：{$v['username']}&nbsp;手机号：{$v['mobile']}</p>
         {/foreach}
       </div>
     </div>
@@ -47,7 +47,7 @@
       <div class="caption">
         <h3>三星会员：{:count($star_user3)}人</h3>
         {foreach name="star_user3" item="v"}
-        <p>姓名：{$v['username']}&nbsp;&nbsp;&nbsp;手机号码：{$v['mobile']}</p>
+        <p>姓名：{$v['username']}&nbsp;手机号：{$v['mobile']}</p>
         {/foreach}
       </div>
     </div>
@@ -57,7 +57,7 @@
       <div class="caption">
         <h3>四星会员：{:count($star_user4)}人</h3>
         {foreach name="star_user4" item="v"}
-        <p>姓名：{$v['username']}&nbsp;&nbsp;&nbsp;手机号码：{$v['mobile']}</p>
+        <p>姓名：{$v['username']}&nbsp;手机号：{$v['mobile']}</p>
         {/foreach}
       </div>
     </div>
@@ -67,7 +67,7 @@
       <div class="caption">
         <h3>五星会员：{:count($star_user5)}人</h3>
         {foreach name="star_user5" item="v"}
-        <p>姓名：{$v['username']}&nbsp;&nbsp;&nbsp;手机号码：{$v['mobile']}</p>
+        <p>姓名：{$v['username']}&nbsp;手机号：{$v['mobile']}</p>
         {/foreach}
       </div>
     </div>
@@ -77,7 +77,7 @@
       <div class="caption">
         <h3>六星会员：{:count($star_user6)}人</h3>
         {foreach name="star_user6" item="v"}
-        <p>姓名：{$v['username']}&nbsp;&nbsp;&nbsp;手机号码：{$v['mobile']}</p>
+        <p>姓名：{$v['username']}&nbsp;手机号：{$v['mobile']}</p>
         {/foreach}
       </div>
     </div>
@@ -87,7 +87,7 @@
       <div class="caption">
         <h3>七星会员：{:count($star_user7)}人</h3>
         {foreach name="star_user7" item="v"}
-        <p>姓名：{$v['username']}&nbsp;&nbsp;&nbsp;手机号码：{$v['mobile']}</p>
+        <p>姓名：{$v['username']}&nbsp;手机号：{$v['mobile']}</p>
         {/foreach}
       </div>
     </div>
@@ -97,7 +97,7 @@
       <div class="caption">
         <h3>八星会员：{:count($star_user8)}人</h3>
         {foreach name="star_user8" item="v"}
-        <p>姓名：{$v['username']}&nbsp;&nbsp;&nbsp;手机号码：{$v['mobile']}</p>
+        <p>姓名：{$v['username']}&nbsp;手机号：{$v['mobile']}</p>
         {/foreach}
       </div>
     </div>
@@ -107,7 +107,7 @@
       <div class="caption">
         <h3>九星会员：{:count($star_user9)}人</h3>
         {foreach name="star_user9" item="v"}
-        <p>姓名：{$v['username']}&nbsp;&nbsp;&nbsp;手机号码：{$v['mobile']}</p>
+        <p>姓名：{$v['username']}&nbsp;手机号：{$v['mobile']}</p>
         {/foreach}
       </div>
     </div>
