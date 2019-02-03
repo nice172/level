@@ -4,6 +4,10 @@ use think\Controller;
 
 class Common extends Controller {
 	
+	public function _empty(){
+		$this->redirect(url('index/index'));
+	}
+	
 	protected function level(){
 		$level = [
 				[
