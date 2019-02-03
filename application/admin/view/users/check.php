@@ -40,14 +40,15 @@
                 <td>{$value['myuser']}</td>
                 <td>{$value['mobile']}</td>
                 <td>{$value['level_text']}</td>
-                {if condition="$value['level']==1"}
+                {if condition="count($value['recommend_info'])==2"}
                 	{foreach $value['recommend_info'] as $val}
                 	<td>{$val['check_name']}</td>
                 	<td>{if condition="$val['check_time']"}{:date('Y-m-d H:i:s', $val['check_time'])}{/if}</td>
                 	{/foreach}
                 {else}
-                <td>{$value['check_name']}</td>
-                <td>{if condition="$value['check_time']"}{:date('Y-m-d H:i:s', $value['check_time'])}{/if}</td>
+                <td>{$value['recommend_info'][0]['check_name']}</td>
+                <td>{if condition="$value['recommend_info'][0]['check_time']"}{:date('Y-m-d H:i:s', $value['recommend_info'][0]['check_time'])}{/if}</td>
+                <td></td><td></td>
                 {/if}
                 <td>{if condition="$value['status']"}已审核{else}未审核{/if}</td>
             </tr>
