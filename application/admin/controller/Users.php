@@ -191,6 +191,11 @@ class Users extends Base {
     	if ($this->request->isAjax() && $this->request->isPost()) {
     		$id = $this->request->param('id');
     		if (db('users')->where(['id' => $id])->delete()){
+    			$apply = db('apply')->where(['user_id' => $id])->select();
+    			db('apply')->where(['user_id' => $id])->delete();
+    			foreach ($apply as $key => $value) {
+    				db('check_log')->where(['log_id' => $value['id']])->delete();
+    			}
     			$this->success('删除成功');
     		}
     		$this->error('删除失败');
