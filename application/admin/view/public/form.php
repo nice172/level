@@ -20,15 +20,18 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
+                    {if condition="!isset($hideForm)"}
                     <form method="post" class="form-horizontal {block name="class"}{/block}" enctype="multipart/form-data" action="{block name='action'}{/block}">
                         {block name="form"}{/block}
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-primary" type="submit">保存</button>
+                                <button class="btn btn-primary submit" type="submit">保存</button>
                                 <span class="btn btn-white" onclick="history.back()">返回</span>
                             </div>
                         </div>
                     </form>
+                    {/if}
+                    {block name="main"}{/block}
                 </div>
             </div>
         </div>
@@ -49,18 +52,35 @@
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
         });
-
-        $('form.ajaxPost').ajaxForm(function(response) {
-            if (!response.code) {
-                warning(response.msg)
-            } else {
-                success(response.msg)
-                setTimeout(function(){
-                    window.location.href = response.url
-                }, response.wait * 1000);
-            }
-        });
-        
+        {if condition="isset($alert)"}
+	        $('form.ajaxPost .submit').click(function(){
+		        var x = $('input[name=level]:checked').attr('item');
+		        if(confirm("你确认要将该会员的当前等级：\n{$user['level_text']}\n改为\n"+x)){
+			        $('form.ajaxPost').ajaxForm(function(response) {
+			            if (!response.code) {
+			                warning(response.msg)
+			            } else {
+			                success(response.msg)
+			                setTimeout(function(){
+			                    window.location.href = response.url
+			                }, response.wait * 1000);
+			            }
+			        });
+		        }
+				return false;
+	        });
+        {else}
+	        $('form.ajaxPost').ajaxForm(function(response) {
+	            if (!response.code) {
+	                warning(response.msg)
+	            } else {
+	                success(response.msg)
+	                setTimeout(function(){
+	                    window.location.href = response.url
+	                }, response.wait * 1000);
+	            }
+	        });
+        {/if}
     });
 </script>
 {block name="js"}{/block}

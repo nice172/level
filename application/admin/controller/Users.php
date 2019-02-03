@@ -215,17 +215,51 @@ class Users extends Base {
     	}
     	
     	if (!$id) $this->error('id参数错误');
+    	$show = $this->request->param('x');
     	$user = db('users')->where(['id' => $id])->find();
     	if (empty($user)) $this->error('会员不存在');
+    	foreach ($this->level() as $val){
+    		if ($val['level'] == $user['level']) {
+    			$user['level_text'] = $val['name'];
+    			break;
+    		}
+    	}
+    	if (!isset($user['level_text'])){
+    		$user['level_text'] = '普通会员';
+    	}
     	$this->assign('user', $user);
     	$level = $this->level();
     	$this->assign('level', $level);
+    	$this->assign('style','');
+    	if ($show == 'u'){
+    		$this->assign('style','style=\'display:none;\'');
+    		$this->assign('alert',true);
+    	}
         return $this->fetch();
     }
     
     public function info(){
-    	return "dev";
-    	// return $this->fetch();
+    	$uid = $this->request->param('id');
+    	$info = db('users')->where(['id' => $uid])->find();
+    	
+    	$count = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	->join('__USERS__ u','u.id=a.user_id')
+    	->where(['c.check_uid' => $info['id']])
+    	->where(['a.status' => 1])
+    	->where('u.level','>=',1)->count('u.id');
+    	
+    	$this->assign('count',$count);
+    	foreach ($this->level() as $key => $value) {
+    		if ($value['level'] == $info['level']) {
+    			$info['level_text'] = $value['name'];
+    			break;
+    		}
+    	}
+    	if (!isset($info['level_text'])) $info['level_text'] = '普通会员';
+    	
+    	$this->assign('userinfo', $info);
+    	$this->assign('hideForm', true);
+    	return $this->fetch();
     }
     
 }
