@@ -26,15 +26,44 @@ class Users extends Base {
     	$db->order('id desc');
     	
     	if (isset($_GET['export'])){
-    		$lists = $db->select();
-    		$this->export($lists);
-    		exit;
+    		$data = $db->select();
     	}else{
-			$list = $db->paginate(10);
+    		$list = $db->paginate(10);
+    		$data = $list->all();
     	}
-		// echo \think\Db::name('')->getLastSql();
-		
-		$this->assign('users', $list);
+    	foreach ($data as $key => $val) {
+    		if ($val['level'] != 0){
+    			foreach ($this->level() as $level) {
+    				if ($val['level'] == $level['level']) {
+    					$data[$key]['level'] = $level['name'];
+    					break;
+    				}
+    			}
+    		}else{
+    			$data[$key]['level'] = '普通会员';
+    		}
+    		
+    		//统计团队人数
+    		$team_count = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    		->join('__USERS__ u','u.id=a.user_id')
+    		->where(['c.check_uid' => $val['id']])->count('u.id');
+    		$data[$key]['team_count'] = $team_count;
+    		
+    		//统计一星以上人数
+    		$star_count = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    		->join('__USERS__ u','u.id=a.user_id')
+    		->where(['c.check_uid' => $val['id']])
+    		->where(['a.status' => 1])
+    		->where('u.level','>=',1)->count('u.id');
+    		$data[$key]['star_count'] = $star_count;
+    	}
+    	if (isset($_GET['export'])){
+    		$this->export($data);
+    		exit;
+    	}
+    	
+    	$this->assign('users', $data);
+    	$this->assign('page', $list->render());
 		$this->assign('count', $list->total());
 		$this->assign('start',1);
         return $this->fetch();
@@ -150,7 +179,7 @@ class Users extends Base {
     				$val['wechat'],
     				$val['level'],
     				$val['recommend_name'],
-    				$val['team_count'],$val['up_count'],
+    				$val['team_count'],$val['star_count'],
     				date('Y-m-d H:i:s', $val['create_time'])
     				);
     		echo @iconv('UTF-8', 'GB18030//IGNORE', $data);

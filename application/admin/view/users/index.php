@@ -52,7 +52,7 @@
                 <td>{$user['level']}</td>
                 <td>{$user['recommend_name']}</td>
                 <td>{$user['team_count']}</td>
-                <td>{$user['up_count']}</td>
+                <td>{$user['star_count']}</td>
                 <td>{$user['create_time']|date='Y-m-d H:i:s'}</td>
                 <td>
                     {:infoButton(url('info', ['id' => $user['id']]))}
@@ -64,7 +64,7 @@
     {/if}
 {/block}
 {block name="paginate"}
-{$users->render()|raw}
+{$page|raw}
 {/block}
 {block name="js"}
 <script type="text/javascript" src="__PLUGINS__/js/laydate/laydate.js"></script>
