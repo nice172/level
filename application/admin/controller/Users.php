@@ -302,7 +302,74 @@ class Users extends Base {
     	$this->assign('count',$team_count);
     	
     	//普通会员
+    	$common = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	->join('__USERS__ u','u.id=a.user_id')
+    	->where(['u.level' => 0,'c.check_uid' => $info['id']])
+    	->field('u.username,u.mobile')->select();
+    	$this->assign('common', $common);
     	
+    	//一星会员
+    	$star_user1 = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	->join('__USERS__ u','u.id=a.user_id')
+    	->where(['u.level' => 1,'c.check_uid' => $info['id']])
+    	->field('u.username,u.mobile')->select();
+    	$this->assign('star_user1', $star_user1);
+    	
+    	//二星会员
+    	$star_user2 = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	->join('__USERS__ u','u.id=a.user_id')
+    	->where(['u.level' => 2,'c.check_uid' => $info['id']])
+    	->field('u.username,u.mobile')->select();
+    	$this->assign('star_user2', $star_user2);
+    	
+    	//三星会员
+    	$star_user3 = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	->join('__USERS__ u','u.id=a.user_id')
+    	->where(['u.level' => 3,'c.check_uid' => $info['id']])
+    	->field('u.username,u.mobile')->select();
+    	$this->assign('star_user3', $star_user3);
+    	
+    	//四星会员
+    	$star_user4 = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	->join('__USERS__ u','u.id=a.user_id')
+    	->where(['u.level' => 4,'c.check_uid' => $info['id']])
+    	->field('u.username,u.mobile')->select();
+    	$this->assign('star_user4', $star_user4);
+    	
+    	//五星会员
+    	$star_user5 = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	->join('__USERS__ u','u.id=a.user_id')
+    	->where(['u.level' => 5,'c.check_uid' => $info['id']])
+    	->field('u.username,u.mobile')->select();
+    	$this->assign('star_user5', $star_user5);
+    	
+    	//六星会员
+    	$star_user6 = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	->join('__USERS__ u','u.id=a.user_id')
+    	->where(['u.level' => 6,'c.check_uid' => $info['id']])
+    	->field('u.username,u.mobile')->select();
+    	$this->assign('star_user6', $star_user6);
+    	
+    	//七星会员
+    	$star_user7 = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	->join('__USERS__ u','u.id=a.user_id')
+    	->where(['u.level' => 7,'c.check_uid' => $info['id']])
+    	->field('u.username,u.mobile')->select();
+    	$this->assign('star_user7', $star_user7);
+    	
+    	//八星会员
+    	$star_user8 = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	->join('__USERS__ u','u.id=a.user_id')
+    	->where(['u.level' => 8,'c.check_uid' => $info['id']])
+    	->field('u.username,u.mobile')->select();
+    	$this->assign('star_user8', $star_user8);
+    	
+    	//九星会员
+    	$star_user9 = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	->join('__USERS__ u','u.id=a.user_id')
+    	->where(['u.level' => 9,'c.check_uid' => $info['id']])
+    	->field('u.username,u.mobile')->select();
+    	$this->assign('star_user9', $star_user9);
     	
     	foreach ($this->level() as $key => $value) {
     		if ($value['level'] == $info['level']) {

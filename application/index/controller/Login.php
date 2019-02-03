@@ -157,6 +157,12 @@ class Login extends Controller {
             return;
         }
         //echo _encrypt($this->request->param('q'), 'DECODE');exit;
+        
+        $q_id = (int)_encrypt($this->request->param('q'), 'DECODE');
+        $find_recom = db('users')->where(['id' => $q_id])->find();
+        if (!empty($find_recom)) {
+        	$this->assign('recommend_user', $find_recom['username']);
+        }
         $this->assign('q',$this->request->param('q'));
         $this->assign('site_name',config('web.site_name'));
         $this->assign('title', '会员注册');

@@ -46,7 +46,7 @@
     <div class="title">{$title}</div>
 </div>
     <div class="info_main">
-        <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="username" placeholder="请输入推荐人"  value="" /></div></div></div>
+        <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="username" placeholder="请输入推荐人" {if condition="isset($recommend_user)"}value="{$recommend_user}"{/if} /></div></div></div>
         <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="mobile" placeholder="请输入商家手机号码"  value="" /></div></div></div>
         <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="wechat" placeholder="请输入商家微信号"  value="" /></div></div></div>
         <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="truename" placeholder="请输入商家姓名"  value="" /></div></div></div>
