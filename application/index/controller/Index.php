@@ -29,7 +29,9 @@ class Index extends Base {
     		$errorCorrectionLevel = 'Q';
     		$matrixPointSize = 5;
     		$filename = $PNG_TEMP_DIR.'share'.md5($this->user['id'].'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
-    		
+    		//http://127.0.0.1:8888/index/login/register/q/32c6CAAEUQNVBggDB1YABAtUVVQNVQMABQIAUVVXBw.html
+//     		echo $domain = $this->request->domain().url('login/register',['q' => $str]);;
+//     		exit;
     		$valid_time = 3600*24*7;
     		if (!file_exists($filename) || (time()-filectime($filename)) >= $valid_time){
     			$domain = $this->request->domain().url('login/register',['q' => $str]);

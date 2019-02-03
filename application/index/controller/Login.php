@@ -113,6 +113,7 @@ class Login extends Controller {
     public function register(){
         self::_isLogin();
         if ($this->request->isAjax() && $this->request->isPost()) {
+        	$q = $this->request->post('memberdata.q');
             $recommend_name = $this->request->post('memberdata.recommend_name');
             $mobile = $this->request->post('memberdata.mobile');
             $wechat = $this->request->post('memberdata.wechat');
@@ -132,12 +133,20 @@ class Login extends Controller {
             $data['wechat'] = $wechat;
             $data['create_time'] = time();
             $data['update_time'] = time();
-                        
+            
             $find = db('users')->where(['mobile' => $mobile])->find();
             if (!empty($find)) $this->error('手机号码已存在!');
             
             $find = db('users')->where(['wechat' => $wechat])->find();
             if (!empty($find)) $this->error('微信号已存在!');
+            
+            if (!empty($q)) {
+            	$recommend_uid = (int)_encrypt($q,'DECODE');
+            	$find_recom = db('users')->where(['id' => $recommend_uid])->find();
+            	if (!empty($find_recom)) {
+            		$data['recommend_uid'] = $recommend_uid;
+            	}
+            }
             
             if (Db::name('users')->insert($data) == 1){
                 $this->loginService($mobile, $password);
@@ -147,6 +156,8 @@ class Login extends Controller {
             }
             return;
         }
+        //echo _encrypt($this->request->param('q'), 'DECODE');exit;
+        $this->assign('q',$this->request->param('q'));
         $this->assign('site_name',config('web.site_name'));
         $this->assign('title', '会员注册');
         return $this->fetch();

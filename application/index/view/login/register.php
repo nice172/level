@@ -159,6 +159,7 @@
                     },true,true);*/
                   core.json("{:url()}", {
                       'memberdata':{
+                           'q': '{$q}',
                            'recommend_name': $('#username').val(),
                            'mobile': $('#mobile').val(),
                            'wechat': $('#wechat').val(),
