@@ -171,7 +171,7 @@ p{
 </style>
 <div class="rucian_tb">
    <p>ID：{$user['id']}</p>
-   <p>等级：普通会员</p>
+   <p>等级：{$user['level_text']}</p>
    <p>姓名：{$user['username']}</p>
     <p>推荐码： 暂无</p>
 </div>
