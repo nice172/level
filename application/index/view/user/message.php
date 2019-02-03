@@ -82,7 +82,7 @@ body {
 
 }
 /*通用结束*/
-.rucian_sj{
+.rucian_sj,.b{
     width: 85%;
     margin: 0 auto;
     margin-top: 15%;
@@ -113,34 +113,28 @@ body {
 {block name="main"}
 <div class="page_topbar">
     <a href="javascript:;" class="back" onclick="history.back()"><i class="fa fa-angle-left"></i></a>
-    <div class="title">申请升级</div>
-    <a class="wsjxx" href="/">商家信息</a>
+    <div class="title">申请升级提示</div>
 </div>
 
 <div class="rucian_sj">
-    <div>您当前的等级：普通会员</div>
-    <div>您可申请升级的等级：一星会员</div>
-    <div>是否提交申请？</div>
+	{if condition="$level_num==0"}
+		{foreach $recommend as $key => $value}
+			{if condition="$key==0"}
+			<div>推荐人微信：{$value['wechat']}</div>
+			{else}
+			<div>五星推荐人微信：：{$value['wechat']}</div>
+			{/if}
+		{/foreach}
+	{else}
+		{foreach $recommend as $key => $value}
+		<div>推荐人微信：{$value['wechat']}</div>
+		{/foreach}
+	{/if}
 </div>
-<a href="/" class="rucian_tj flex flex-center" id="tijiao">提交申请</a>
+<a href="javascript:;" class="rucian_tj flex flex-center" id="tijiao">等待审核</a>
 {/block}
 {block name="footer"}
 <script>
-require(['tpl', 'core'], function(tpl, core) {
-    var type  = 1;
-    $('body').on('click','.rucian_tj',function(){
 
-         core.json('member/sqsj',{type:type},function(json){
-            if(json.status == 1){
-               core.tip.show(json.result.msg);
-                
-            }else{
-                core.tip.show(json.result.msg);
-
-            }
-         })
-
-    });
-});
 </script>
 {/block}

@@ -193,19 +193,19 @@ p{
 		</div>
 		<span>分享推荐</span>
 	</a>
-	<a href="http://sd11ebr.cn/app/index.php?i=1&amp;c=entry&amp;p=sqsj&amp;do=member&amp;m=sz_yi" class="rucian_a flex flex-ver flex-wrap">
+	<a href="{:url('user/apply')}" class="rucian_a flex flex-ver flex-wrap">
 		<div class="rucian_aimg">
 			<img src="__IMG__/help2.png" alt="">
 		</div>
 		<span>申请升级</span>
 	</a>
-	<a href="http://sd11ebr.cn/app/index.php?i=1&amp;c=entry&amp;p=helpzc&amp;do=member&amp;m=sz_yi" class="rucian_a flex flex-ver flex-wrap">
+	<a href="{:url('user/check')}" class="rucian_a flex flex-ver flex-wrap">
 		<div class="rucian_aimg">
 			<img src="__IMG__/help3.png" alt="">
 		</div>
 		<span>审核升级</span>
 	</a>
-	<a href="http://sd11ebr.cn/app/index.php?i=1&amp;c=entry&amp;p=team&amp;do=member&amp;m=sz_yi" class="rucian_a flex flex-ver flex-wrap">
+	<a href="{:url('user/team')}" class="rucian_a flex flex-ver flex-wrap">
 		<div class="rucian_aimg">
 			<img src="__IMG__/help4.png" alt="">
 		</div>

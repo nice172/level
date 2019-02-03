@@ -2,25 +2,26 @@
 {block name="menu"}会员管理{/block}
 {block name="search"}
         <div class="form-group">
-            <label for="name" class="sr-only">加入时间</label>
+            <label for="start_date" class="sr-only">加入时间</label>
             <input type="text" name="start_date" readonly="readonly" placeholder="选择开始加入时间" id="start_date" class="form-control" value="{$Request.param.start_date}">
         </div>
         <div class="form-group">
-            <label for="name" class="sr-only">至</label>
+            <label for="end_date" class="sr-only">至</label>
             <input type="text" name="end_date" readonly="readonly" placeholder="选择结束加入时间" id="end_date" class="form-control" value="{$Request.param.end_date}">
         </div>
         <div class="form-group">
-            <label for="name" class="sr-only">会员姓名</label>
-            <input type="text" name="username" placeholder="请输入会员姓名" id="name" class="form-control" value="{$Request.param.username}">
+            <label for="username" class="sr-only">会员姓名</label>
+            <input type="text" name="username" placeholder="请输入会员姓名" id="username" class="form-control" value="{$Request.param.username}">
         </div>
         <div class="form-group">
-            <label for="email" class="sr-only">手机号码</label>
-            <input type="text" name="mobile" placeholder="请输入手机号码" id="email" class="form-control" value="{$Request.param.mobile}">
+            <label for="mobile" class="sr-only">手机号码</label>
+            <input type="text" name="mobile" placeholder="请输入手机号码" id="mobile" class="form-control" value="{$Request.param.mobile}">
         </div>
         {:searchButton()}
+        {:exportButton()}
 {/block}
 {block name="button-create"}
-    {:createButton(url('user/create'), '创建会员')}
+    {:createButton(url('create'), '创建会员')}
 {/block}
 {block name="table-head"}
     <tr>
@@ -54,8 +55,9 @@
                 <td>{$user['up_count']}</td>
                 <td>{$user['create_time']|date='Y-m-d H:i:s'}</td>
                 <td>
-                    {:editButton(url('user/edit', ['id' => $user['id']]))}
-                    {:deleteButton(url('user/delete'), $user['id'])}
+                    {:infoButton(url('info', ['id' => $user['id']]))}
+                    {:editButton(url('edit', ['id' => $user['id']]))}
+                    {:deleteButton(url('delete'), $user['id'])}
                 </td>
             </tr>
         {/foreach}

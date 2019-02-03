@@ -1,9 +1,9 @@
 <?php
 namespace app\admin\controller;
-use think\Controller;
 use think\facade\Request;
+use app\common\Common;
 
-class Base extends Controller {
+class Base extends Common {
     
     private $loginUser;
     
@@ -46,5 +46,5 @@ class Base extends Controller {
         $this->assign('permissions',$permissions);
         
     }
-    
+ 
 }

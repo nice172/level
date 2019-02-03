@@ -19,6 +19,7 @@ class Login extends Controller {
             if (empty($mobile)) $this->error('请输入手机号码!');
             if (empty($password)) $this->error('请输入登录密码!');
             $this->loginService($mobile, $password);
+            $this->success('登录成功');
             return;
         }
         $this->assign('site_name',config('web.site_name'));
@@ -41,7 +42,7 @@ class Login extends Controller {
                 $this->success('您的验证码是：'.$checkcode);
             }elseif ($type == 'checkcode'){
                 if ($message->check($this->request)){
-                    $this->success('ok');
+                    $this->success('验证成功');
                 }else{
                     $this->error('验证码错误!');
                 }
@@ -70,7 +71,7 @@ class Login extends Controller {
             ])){
                 $message = new \service\Message();
                 $message->clear($mobile);
-                $this->success('ok');
+                $this->success('修改成功');
             }else{
                 $this->error('修改失败');
             }
@@ -99,7 +100,8 @@ class Login extends Controller {
            return $this->error('error lock');
        }
        session('user', ['user_id' => $find['id'],'username' => $find['username']]);
-       $this->success('ok');
+       //$this->success('ok');
+       return true;
     }
     
     private function _isLogin(){
@@ -130,7 +132,7 @@ class Login extends Controller {
             $data['wechat'] = $wechat;
             $data['create_time'] = time();
             $data['update_time'] = time();
-            
+                        
             $find = db('users')->where(['mobile' => $mobile])->find();
             if (!empty($find)) $this->error('手机号码已存在!');
             

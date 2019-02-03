@@ -75,18 +75,30 @@
 {block name="main"}
     <div class="page_topbar">
         <a href="javascript:history.back()" class="back"><i class="fa fa-angle-left"></i></a>
-        <div class="title">我的团队（0人）</div>
+        <div class="title">我的团队（{$total}人）</div>
     </div>
 
     <div class="team_list_head">
         <div class="info">成员信息</div>
-        <div class="num2">一星及一星以上人数:0</div>
+        <div class="num2">一星及一星以上人数:{$count}</div>
     </div>
-    <div id="container"><div style="padding-top:120px;width:190px;margin:0 auto;">
-      <img style="width:60px;display:block;margin:0 auto;" src="./我的团队_files/Detailed.png" alt="">
+    <div id="container">
+    {if condition="empty($users)"}
+    <div style="padding-top:120px;width:190px;margin:0 auto;">
+      <img style="width:60px;display:block;margin:0 auto;" src="__IMG__/Detailed.png" alt="">
       <span style="display:block;margin-top: 18px; text-align:center;">您还没有相关纪录~</span><br>
-
-  </div></div>
+  	</div>
+  	{/if}
+  {foreach name="users" item="v"}
+  <div class="team_list">
+            <div class="info">昵称：{$v['username']}<br>
+                <span>手机号：{$v['mobile']}</span>
+            </div>
+            <div class="num2">等级：{$v['level_text']}<br><span>微信：{$v['wechat']}</span></div>
+            <div class="f-cb"></div>
+        </div>
+  {/foreach}
+  </div>
     <div id="log_loading"></div>
 
     <script id="tpl_log" type="text/html">
@@ -180,7 +192,7 @@
     }
 
 
-    getLog('');
+    //getLog('');
 
 
 })

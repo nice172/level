@@ -10,12 +10,32 @@ if (!function_exists('hook')) {
 }
 
 /**
+ * 手机号码验证
+ * @param string $mobilephone
+ * @return boolean
+ */
+function _checkmobile($mobilephone=''){
+	if(strlen($mobilephone)!=11){	return false;	}
+	if(preg_match("/^13[0-9]{1}[0-9]{8}$|15[0-9]{1}[0-9]{8}$|14[0-9]{1}[0-9]{8}$|17[0-9]{1}[0-9]{8}$|18[0-9]{1}[0-9]{8}$/",$mobilephone)){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+/**
  * 编辑按钮
  */
 if (!function_exists('editButton')) {
     function editButton( $url,  $name = '编辑') {
         return sprintf('<a href="%s"><button class="btn btn-info btn-xs edit" type="button"><i class="fa fa-paste"></i> %s</button></a>', $url, $name);
     }
+}
+
+if (!function_exists('infoButton')) {
+	function infoButton( $url,  $name = '资料') {
+		return sprintf('<a href="%s"><button class="btn btn-info btn-xs" type="button"><i class="fa fa-paste"></i> %s</button></a>', $url, $name);
+	}
 }
 
 /**
@@ -42,8 +62,14 @@ if (!function_exists('deleteButton')) {
  */
 if (!function_exists('searchButton')) {
     function searchButton( $name="搜索") {
-        return sprintf('<button class="btn btn-white" type="submit"><i class="fa fa-search"></i> %s</button>', $name);
+        return sprintf('<button class="btn btn-white" name="search" type="submit"><i class="fa fa-search"></i> %s</button>', $name);
     }
+}
+
+if (!function_exists('exportButton')) {
+	function exportButton( $name="导出") {
+		return sprintf('<button class="btn btn-white" name="export" type="submit"><i class="fa"></i>%s</button>', $name);
+	}
 }
 
 /**

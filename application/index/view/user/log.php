@@ -109,15 +109,56 @@ body {
     font-size: 16px;
     color: rgb(26, 196, 199);
 }
-
+body{background:#fff;}
+.weui-cell__bd p{color: #282828;font-size: 15px;}
+.btnWrap{width: 90%;margin:15px auto;}
+.exitBtn{width: 100%;background: #e45050;height: 45px;line-height: 45px;font-size: 15px;}
+a,a:hover,a:active{color: #282828;text-decoration: none;}
+.weui-form-preview:before{border:none;}
+.weui-form-preview__label{text-align:right;text-align-last:right;min-width:5em;margin-bottom:0;}
+.weui-form-preview__value{text-align:left;}
+.weui-form-preview__bd{line-height:1.5;}
+label{font-weight:normal;}
 </style>
 {/block}
 {block name="main"}
 <div class="page_topbar">
-    <a href="javascript:;" class="back" onclick="history.back()"><i class="fa fa-angle-left"></i></a>
-    <div class="title">审核升级</div>
+    <a href="javascript:;" class="back" onclick="history.back();"><i class="fa fa-angle-left"></i></a>
+    <div class="title">审核记录</div>
 </div>
-<div class="rucian_sj">暂无审核升级权限!</div>
+{if empty($lists)}
+	<div class="rucian_sj">暂无审核记录!</div>
+{else}
+
+<div class="weui-cells" style="margin-top:0px">
+	{foreach $lists as $key => $value}
+	<div class="weui-form-preview">
+	  <div class="weui-form-preview__bd">
+	    <div class="weui-form-preview__item">
+	      <label class="weui-form-preview__label">会员编号：</label>
+	      <span class="weui-form-preview__value">{$value['user_id']}</span>
+	    </div>
+	    <div class="weui-form-preview__item">
+	      <label class="weui-form-preview__label">姓名：</label>
+	      <span class="weui-form-preview__value">{$value['username']}</span>
+	    </div>
+	    <div class="weui-form-preview__item">
+	      <label class="weui-form-preview__label">准等级：</label>
+	      <span class="weui-form-preview__value">{$value['level_text']}</span>
+	    </div>
+	    	    <div class="weui-form-preview__item">
+	      <label class="weui-form-preview__label">手机号码：</label>
+	      <span class="weui-form-preview__value">{$value['mobile']}</span>
+	    </div>
+	    	    <div class="weui-form-preview__item">
+	      <label class="weui-form-preview__label">微信号：</label>
+	      <span class="weui-form-preview__value">{$value['wechat']}</span>
+	    </div>
+	  </div>
+	</div>
+	{/foreach}
+	</div>
+{/if}
 <style type="text/css">
     .num1{right: 10px;top:3px;width: 7px;height: 7px;}
     footer#footer-nav{bottom: -1px;}

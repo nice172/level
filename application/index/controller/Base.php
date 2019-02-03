@@ -1,9 +1,12 @@
 <?php
 namespace app\index\controller;
-use think\Controller;
 
-class Base extends Controller {
+use app\common\Common;
+
+class Base extends Common {
+	
     protected $user;
+    
     protected function initialize(){
         parent::initialize();
         
