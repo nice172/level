@@ -19,6 +19,16 @@ class Base extends Common {
             return $this->redirect(url('login/index'));
         }
         $this->user = $user;
+        if ($user['level'] == 0){
+        	$user['level_text'] = '暂无等级';
+        }else{
+        	foreach ($this->level() as $val){
+        		if ($user['level'] == $val['level']){
+        			$user['level_text'] = $val['name'];
+        			break;
+        		}
+        	}
+        }
         $this->assign('user', $user);
         
         $this->assign('site_name',config('web.site_name'));

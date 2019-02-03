@@ -16,25 +16,31 @@ class Index extends Base {
     }
     
     public function share(){
-        $PNG_TEMP_DIR = './temp'.DIRECTORY_SEPARATOR;
-        $PNG_WEB_DIR = 'temp/';
-        include '../vendor/phpqrcode/qrlib.php';
-        if (!file_exists($PNG_TEMP_DIR)){
-            mkdir($PNG_TEMP_DIR);
-        }
-        $str = _encrypt($this->user['id']);
-        //array('L','M','Q','H')
-        $errorCorrectionLevel = 'Q';
-        $matrixPointSize = 5;
-        $filename = $PNG_TEMP_DIR.'share'.md5($this->user['id'].'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
-        
-        $valid_time = 3600*24*7;
-        if (!file_exists($filename) || (time()-filectime($filename)) >= $valid_time){
-            $domain = $this->request->domain().url('login/register',['q' => $str]);
-            \QRcode::png($domain, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
-        }
-        
-        $this->assign('qrcode', ltrim($filename,'.'));
+    	
+    	if ($this->user['level'] != 0) {
+    		$PNG_TEMP_DIR = './temp'.DIRECTORY_SEPARATOR;
+    		$PNG_WEB_DIR = 'temp/';
+    		include '../vendor/phpqrcode/qrlib.php';
+    		if (!file_exists($PNG_TEMP_DIR)){
+    			mkdir($PNG_TEMP_DIR);
+    		}
+    		$str = _encrypt($this->user['id']);
+    		//array('L','M','Q','H')
+    		$errorCorrectionLevel = 'Q';
+    		$matrixPointSize = 5;
+    		$filename = $PNG_TEMP_DIR.'share'.md5($this->user['id'].'|'.$errorCorrectionLevel.'|'.$matrixPointSize).'.png';
+    		
+    		$valid_time = 3600*24*7;
+    		if (!file_exists($filename) || (time()-filectime($filename)) >= $valid_time){
+    			$domain = $this->request->domain().url('login/register',['q' => $str]);
+    			\QRcode::png($domain, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+    		}
+    		
+    		$this->assign('qrcode', ltrim($filename,'.'));
+    		$this->assign('auth',1);
+    	}else{
+    		$this->assign('auth', 0);
+    	}
         $this->assign('title', '专属推荐码');
         return $this->fetch();
     }

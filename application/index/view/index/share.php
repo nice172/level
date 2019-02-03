@@ -15,6 +15,8 @@ label{font-weight:normal;}
 {/block}
 {block name="main"}
 {include file="public/topbar" /}
+
+{if condition="$auth==1"}
 <div class="weui-cells" style="margin-top:0px">
 <div class="weui-form-preview">
   <div class="weui-form-preview__bd">
@@ -28,20 +30,28 @@ label{font-weight:normal;}
     </div>
     <div class="weui-form-preview__item">
       <label class="weui-form-preview__label">会员等级：</label>
-      <span class="weui-form-preview__value">{$user['level']}</span>
+      <span class="weui-form-preview__value">{$user['level_text']}</span>
     </div>
   </div>
   
 </div>
 
 <!-- <div id="divOne"></div> -->
-<img id="imgOne" src="{$qrcode}" style="margin:10px auto;display:block;"/>
 
-</div>
-		
+<img id="imgOne" src="{$qrcode}" style="margin:10px auto;display:block;"/>
+</div>	
 <div class="btnWrap">
 	<div class="u-btn exitBtn">分享</div>
 </div>
+{else}
+
+    <div style="padding-top:120px;width:190px;margin:0 auto;">
+      <img style="width:60px;display:block;margin:0 auto;" src="__IMG__/Detailed.png" alt="">
+      <span style="display:block;margin-top: 18px; text-align:center;">暂无分享权限~</span><br>
+  	</div>
+
+{/if}
+
 {/block}
 {block name="footer"}
 <script type="text/javascript">
