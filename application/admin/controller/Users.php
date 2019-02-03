@@ -271,13 +271,12 @@ class Users extends Base {
     	$uid = $this->request->param('id');
     	$info = db('users')->where(['id' => $uid])->find();
     	
-    	$count = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
+    	$team_count = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
     	->join('__USERS__ u','u.id=a.user_id')
-    	->where(['c.check_uid' => $info['id']])
-    	->where(['a.status' => 1])
-    	->where('u.level','>=',1)->count('u.id');
+    	->where(['c.check_uid' => $info['id']])->count('u.id');
     	
-    	$this->assign('count',$count);
+    	$this->assign('count',$team_count);
+    	
     	foreach ($this->level() as $key => $value) {
     		if ($value['level'] == $info['level']) {
     			$info['level_text'] = $value['name'];
