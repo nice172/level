@@ -94,6 +94,25 @@ class Users extends Base {
     		->join('__USERS__ u','c.check_uid=u.id')
     		->where(['c.log_id' => $value['id']])
     		->field('c.*,u.wechat,u.username,u.mobile as u_mobile')->order('c.id asc')->select();
+    		
+    		if (count($recommend_info) == 2){
+    			$checkStatus = [];
+    			foreach ($recommend_info as $v){
+    				$checkStatus[] = $v['check_status'];
+    			}
+    			if (count(array_unique($checkStatus)) == 1){
+    				$data[$key]['status'] = 1;
+    			}else{
+    				$data[$key]['status'] = 0;
+    			}
+    		}else{
+    			$checkStatus = $recommend_info[0]['check_status'];
+    			$data[$key]['status'] = 0;
+    			if ($checkStatus == 1){
+    				$data[$key]['status'] = 1;
+    			}
+    		}
+    		
     		$data[$key]['recommend_info'] = $recommend_info;
     	}
     	$level = $this->level();
@@ -281,6 +300,9 @@ class Users extends Base {
     	->where(['c.check_uid' => $info['id']])->count('u.id');
     	
     	$this->assign('count',$team_count);
+    	
+    	//普通会员
+    	
     	
     	foreach ($this->level() as $key => $value) {
     		if ($value['level'] == $info['level']) {
