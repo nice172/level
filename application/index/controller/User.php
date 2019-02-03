@@ -277,8 +277,8 @@ class User extends Base {
     	$this->assign('count',$count);
     	
     	$users = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
-    	->where(['check_uid' => $this->user['id']])
-    	->where('check_time','<>',0)->field('a.*,c.check_time')->paginate(1000);
+    	->where(['a.status' => 1,'c.check_uid' => $this->user['id']])
+    	->where('c.check_time','<>',0)->field('a.*,c.check_time')->paginate(1000);
     	$userList = $users->all();
     	foreach ($userList as $key => $value) {
     		$find = db('users')->where(['id' => $value['user_id']])->field('wechat,level,username')->find();
