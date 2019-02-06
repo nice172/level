@@ -17,7 +17,18 @@
     		<img src="{$webinfo['bg_pic']}" class="div-img" width="100" alt="" />
     	</div>
     </div>
-    
+    <div class="form-group">
+        <label class="col-sm-2 control-label">微信APPID</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" value="{$webinfo['appid']}" name="appid">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">AppSecret</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" value="{$webinfo['appSecret']}" name="appSecret">
+        </div>
+    </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">客服姓名</label>
         <div class="col-sm-4">

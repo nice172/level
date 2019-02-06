@@ -1,9 +1,14 @@
 <script>
-     require(['http://res.wx.qq.com/open/js/jweixin-1.0.0.js'],function(wx){
-        window.shareData = {"title":"\u521b\u5ba2\u5ba2\u670d","imgUrl":"","desc":"\u5546\u57ce\u7b80\u4ecb","link":""};
+     //require(['http://res.wx.qq.com/open/js/jweixin-1.0.0.js'],function(wx){
+     require(['http://res.wx.qq.com/open/js/jweixin-1.4.0.js'],function(wx){
+        window.shareData = {"title":"\u521b\u5ba2\u5ba2\u670d","imgUrl":"{if condition="isset($img)"}{$img}{/if}","desc":"\u5546\u57ce\u7b80\u4ecb","link":"{if condition="isset($link)"}{$link}{/if}"};
         // console.log(window.shareData);
 		jssdkconfig = null || { jsApiList:[] };
-	    	    jssdkconfig.debug =false;
+	   	jssdkconfig.debug =false;
+	   	jssdkconfig.appId = "<?php echo $signPackage["appId"];?>";
+	   	jssdkconfig.timestamp = <?php echo $signPackage["timestamp"];?>;
+	   	jssdkconfig.nonceStr = "<?php echo $signPackage["nonceStr"];?>";
+	   	jssdkconfig.signature = "<?php echo $signPackage["signature"];?>";
 		jssdkconfig.jsApiList = ['checkJsApi','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','showOptionMenu','scanQRCode','chooseWXPay'];
 		wx.config(jssdkconfig);
 		wx.ready(function () {
@@ -12,10 +17,6 @@
 			wx.onMenuShareTimeline(window.shareData);
 			wx.onMenuShareQQ(window.shareData);
 			wx.onMenuShareWeibo(window.shareData);
-       
-
-                                                               
-	
 	            $("#a_logo1").click(function(){
 	          
 	            wx.scanQRCode({

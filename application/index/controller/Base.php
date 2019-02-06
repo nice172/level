@@ -37,6 +37,11 @@ class Base extends Common {
         
         $this->assign('site_name',config('web.site_name'));
         $this->assign('domain',$this->request->domain());
+        
+        $jssdk = new \JSSDK(config('webinfo.appid'), config('webinfo.appSecret'));
+        $signPackage = $jssdk->GetSignPackage();
+        $this->assign('signPackage', $signPackage);
+        
     }
     
 }

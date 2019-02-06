@@ -33,12 +33,14 @@ class Index extends Base {
 //     		echo $domain = $this->request->domain().url('login/register',['q' => $str]);;
 //     		exit;
     		$valid_time = 3600*24*7;
+    		$domain = $this->request->domain().url('login/register',['q' => $str]);
     		if (!file_exists($filename) || (time()-filectime($filename)) >= $valid_time){
-    			$domain = $this->request->domain().url('login/register',['q' => $str]);
     			\QRcode::png($domain, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
     		}
-    		
+    		$this->assign('link', $domain);
+    		$this->assign('img', $this->request->domain().$filename);
     		$this->assign('qrcode', ltrim($filename,'.'));
+    		    		
     		$this->assign('auth',1);
     	}else{
     		$this->assign('auth', 0);
