@@ -97,7 +97,11 @@ class User extends Base {
     		//四星升五星
     		if ($update_level == 5) {
     			//判断累计81个一星会员
-    			$count = db('users')->where('level','>=', 1)->count('id');
+    			$count = db('users')
+    			->where(['recommend_uid' => $this->user['id']])
+    			->where('level','>=', 1)
+    			->where('level','<=', 4)
+    			->count('id');
     			if ($count < 81) {
     				$this->error('需要累计81个会员');
     			}
