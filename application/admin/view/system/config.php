@@ -30,6 +30,24 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-sm-2 control-label">短信签名</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" value="{$webinfo['SignName']}" name="SignName">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">AccessKeyId</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" value="{$webinfo['AccessKeyId']}" name="AccessKeyId">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">AccessKeySecret</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" value="{$webinfo['AccessKeySecret']}" name="AccessKeySecret">
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-sm-2 control-label">客服姓名</label>
         <div class="col-sm-4">
             <input type="text" class="form-control" value="{$webinfo['kf_name']}" name="kf_name">

@@ -4,6 +4,8 @@ return array (
   'bg_pic' => '/uploads/20190129/3eaed5faf0f7116fdbafc2d45c6b0a66.gif',
   'appid' => 'wx853d2333a930abee',
   'appSecret' => '2f9f18cbfc4d6e945922782e75d04f6a',
+  'AccessKeyId' => 'dfsagdsafdsafdsafdsafdas',
+  'AccessKeySecret' => 'fdsafdsagdsafdsafdsafdsafdsa',
   'kf_name' => 'nice',
   'kf_tel' => '13800138123',
   'zx_tel' => '13800138002',
