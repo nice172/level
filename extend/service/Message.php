@@ -1,10 +1,8 @@
 <?php
 namespace service;
-set_time_limit(0);
-
-use think\Request;
 require_once dirname(dirname(__DIR__)).'/vendor/api_sdk/vendor/autoload.php';
-
+set_time_limit(0);
+use think\Request;
 use Aliyun\Core\Config;
 use Aliyun\Core\Profile\DefaultProfile;
 use Aliyun\Core\DefaultAcsClient;
