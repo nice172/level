@@ -30,9 +30,9 @@ class Message {
         $domain = "dysmsapi.aliyuncs.com";
         
         // TODO 此处需要替换成开发者自己的AK (https://ak-console.aliyun.com/)
-        $accessKeyId = "LTAI34DBVYb9xrrk"; // AccessKeyId
+        $accessKeyId = ""; // AccessKeyId
         
-        $accessKeySecret = "gIlLcDm3Jb0SvOQ1WMEjjjWDHZcS9D"; // AccessKeySecret
+        $accessKeySecret = ""; // AccessKeySecret
         
         // 暂时不支持多Region
         $region = "cn-hangzhou";
