@@ -66,7 +66,7 @@ body {margin:0px; background:#fff; font-family:'微软雅黑'; -moz-appearance:n
                             $("#btnSendCode").val(curCount + "秒后重新获取验证码");
                             InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
                         　　  					//向后台发送处理数据
-                            alert(json.msg);
+                            //alert(json.msg);
                         }else{
                              core.tip.show(json.msg);
                              return;

@@ -38,8 +38,10 @@ class Login extends Controller {
                 if ($find['status'] == 0) {
                     $this->error('此会员已被禁用!');
                 }
-                $checkcode = $message->send($this->request);
-                $this->success('您的验证码是：'.$checkcode);
+                if ($message->send($this->request)){
+                    $this->success("验证码发送成功");
+                }
+                $this->error("验证码发送失败");
             }elseif ($type == 'checkcode'){
                 if ($message->check($this->request)){
                     $this->success('验证成功');

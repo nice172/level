@@ -68,7 +68,7 @@
                              $("#btnSendCode").attr("disabled", "true");
                              $("#btnSendCode").val(curCount + "秒后重新获取验证码");
                              InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-                             alert(json.msg);
+                             //alert(json.msg);
                         　　 				//向后台发送处理数据 
                         }else{
                             core.tip.show(json.msg);
