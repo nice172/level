@@ -4,7 +4,7 @@ class System extends Base {
     
     public function config(){
         
-    	$config = include './webinfo.php';
+    	$config = config()['webinfo'];
     	$this->assign('webinfo',$config);
     	
         return $this->fetch();
@@ -65,14 +65,16 @@ class System extends Base {
                'kf_name' => $this->request->post('kf_name'),
                'kf_tel' => $this->request->post('kf_tel'),
                'zx_tel' => $this->request->post('zx_tel'),
+               'share_title' => $this->request->post('share_title'),
+               'share_desc' => $this->request->post('share_desc'),
                'notice' => $this->request->post('notice'),
             ];
-            $filename = "./webinfo.php";
+            $filename = '../config/webinfo.php';
             if (!is_writable($filename)){
                 $this->error("没权限写入");
             }
-            file_put_contents('../application/index/config/webinfo.php', "<?php\r\n// 这个不要删除\r\nreturn ".var_export($config,true).";\r\n?>");
-            if (file_put_contents($filename, "<?php\r\n// 这个不要删除\r\nreturn ".var_export($config,true).";\r\n?>")){
+            $flag = file_put_contents('../config/webinfo.php', "<?php\r\n// 这个不要删除\r\nreturn ".var_export($config,true).";\r\n?>");
+            if ($flag){
                 $this->success("保存成功");
             }else{
                 $this->error("保存失败");

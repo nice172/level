@@ -8,7 +8,7 @@ use service\Message;
 class Index extends Base {
     
     public function index(){
-        $webinfo = include 'webinfo.php';
+        $webinfo = config()['webinfo'];
         $this->assign('webinfo', $webinfo);
         $this->assign('title','个人中心');
         

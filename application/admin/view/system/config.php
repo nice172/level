@@ -65,6 +65,21 @@
             <input type="text" class="form-control" value="{$webinfo['zx_tel']}" name="zx_tel">
         </div>
     </div>
+    
+     <div class="form-group">
+        <label class="col-sm-2 control-label">微信分享标题</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" value="{$webinfo['share_title']}" name="share_title">
+        </div>
+    </div>
+    
+         <div class="form-group">
+        <label class="col-sm-2 control-label">微信分享描述</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" value="{$webinfo['share_desc']}" name="share_desc">
+        </div>
+    </div>
+    
      <div class="form-group">
         <label class="col-sm-2 control-label">公告</label>
         <div class="col-sm-4">

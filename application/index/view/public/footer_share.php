@@ -1,7 +1,7 @@
 <script>
      //require(['http://res.wx.qq.com/open/js/jweixin-1.0.0.js'],function(wx){
      require(['http://res.wx.qq.com/open/js/jweixin-1.4.0.js'],function(wx){
-        window.shareData = {"title":"\u521b\u5ba2\u5ba2\u670d","imgUrl":"{if condition="isset($img)"}{$img}{/if}","desc":"\u5546\u57ce\u7b80\u4ecb","link":"{if condition="isset($link)"}{$link}{/if}"};
+        window.shareData = {"title":"{$share_title}","imgUrl":"{if condition="isset($img)"}{$img}{/if}","desc":"{$share_desc}","link":"{if condition="isset($link)"}{$link}{/if}"};
         // console.log(window.shareData);
 		jssdkconfig = null || { jsApiList:[] };
 	   	jssdkconfig.debug =false;
