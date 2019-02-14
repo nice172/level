@@ -54,6 +54,8 @@ input{outline: none!important;}
 </div>
   <div style="margin:10px;color:#999">账号设置</div>
     <div class="info_main">
+            <div class="line"><div class="title">编号</div><div class="info">
+        <div class="inner"><input type="text" readonly="readonly" value="{$user_id}"></div></div></div>
         <div class="line"><div class="title">姓名</div><div class="info">
         <div class="inner"><input type="text" id="realname" placeholder="请输入您的姓名" value="{$user['username']}"></div></div></div>
         <div class="line my_line"><div class="title">微信号</div><div class="info">

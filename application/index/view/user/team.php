@@ -101,29 +101,10 @@
   </div>
     <div id="log_loading"></div>
 
-    <script id="tpl_log" type="text/html">
-   <%each list as row%>
-
-    <div id="container" style="width: 100%;height: auto;">
-        <div class="team_list">
-            <!-- <div class="img">
-                <img src="<%if row.avatar%>../addons/sz_yi/template/mobile/style1/static/images/quyuJJ.png<%else%><%row.avatar%><%/if%>">
-            </div> -->
-            <div class="info">
-                昵称：<%row.realname%>
-
-                <br>
-                <span>手机号：<%row.mobile%></span>
-            </div>
-                    <div class="num2">等级：<%if row.level == 0 %>普通会员<%else%><%row.levelname%><%/if%><br><span>微信：<%if row.weixin%><%row.weixin%><%else%>暂无微信号<%/if%></span></div>
-            <div class="f-cb"></div>
-        </div>
-    </div>
-    <%/each%>
-    </script>
+    
      <script id="tpl_empty" type="text/html">
     <div style="padding-top:120px;width:190px;margin:0 auto;">
-      <img style="width:60px;display:block;margin:0 auto;" src="../addons/sz_yi/plugin/suppliermenu/template/mobile/default/images/Detailed.png" alt="">
+      <img style="width:60px;display:block;margin:0 auto;" src="__IMG__/images/Detailed.png" alt="">
       <span style="display:block;margin-top: 18px; text-align:center;">您还没有相关纪录~</span></br>
 
   </div>
@@ -197,5 +178,5 @@
 
 })
 </script>
-<div id="core_loading" style="top: 50%; left: 50%; margin-left: -35px; margin-top: -30px; position: absolute; width: 80px; height: 80px; z-index: 999999; display: none;"><img src="./我的团队_files/loading.gif" width="80"></div>
+<div id="core_loading" style="top: 50%; left: 50%; margin-left: -35px; margin-top: -30px; position: absolute; width: 80px; height: 80px; z-index: 999999; display: none;"><img src="__IMG__/loading.gif" width="80"></div>
 {/block}

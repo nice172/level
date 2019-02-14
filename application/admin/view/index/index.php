@@ -51,12 +51,29 @@
                     </a>
                 </li>
                 {foreach $permissions as $key=>$permission}
+                	{if condition="isset($permission['submenu']) && !empty($permission['submenu'])"}
+                	<li>
+                        <a href="javascript:;">
+                            <i class="{$permission['icon']}"></i>
+                            <span class="nav-label">{$permission['title']}</span>
+                            <span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            {foreach $permission['submenu'] as $k=>$sub}
+                                <li>
+                                    <a class="J_menuItem" href="{$sub['url']}" data-index="{$k}">{$sub['title']}</a>
+                                </li>
+                            {/foreach}
+                        </ul>
+                    </li>
+                    {else}
                     <li>
                         <a class="J_menuItem" href="{$permission['url']}" data-index="{$key}">
                             <i class="{$permission['icon']}"></i>
                             <span class="nav-label">{$permission['title']}</span>
                         </a>
                     </li>
+                    {/if}
                 {/foreach}
             </ul>
         </div>

@@ -10,6 +10,10 @@ class Index extends Base {
     public function index(){
         $webinfo = config()['webinfo'];
         $this->assign('webinfo', $webinfo);
+        
+        $kf = config()['kf'];
+        $this->assign('kf_title', $kf['title']);
+        $this->assign('kf_value', $kf['value']);
         $this->assign('title','个人中心');
         
         return $this->fetch();

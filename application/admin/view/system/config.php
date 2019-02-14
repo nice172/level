@@ -47,22 +47,34 @@
             <input type="text" class="form-control" value="{$webinfo['AccessKeySecret']}" name="AccessKeySecret">
         </div>
     </div>
+        
+   <div class="form-group">
+        <label class="col-sm-2 control-label">初始用户数</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" {if condition="isset($webinfo['init_count'])"}value="{$webinfo['init_count']}"{/if} name="init_count">
+        </div>
+    </div>
+    
     <div class="form-group">
-        <label class="col-sm-2 control-label">客服姓名</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" value="{$webinfo['kf_name']}" name="kf_name">
+        <label class="col-sm-2 control-label">关注二维码</label>
+        <div class="col-sm-4" style="position: relative;">
+        	<input type="text" class="form-control qrcode" readonly="readonly" name="qrcode" {if condition="isset($webinfo['qrcode'])"}value="{$webinfo['qrcode']}"{/if} />
+            <input type="file" style="display: none;" class="form-control uploadqrcode" {if condition="isset($webinfo['qrcode'])"}value="{$webinfo['qrcode']}"{/if} name="uploadqrcode" />
+            <button class="btn selectQrcode" type="button" style="position: absolute;right:-50px;top:0px;">上传</button>
         </div>
     </div>
-        <div class="form-group">
-        <label class="col-sm-2 control-label">客服电话</label>
-        <div class="col-sm-4">
-            <input type="text" class="form-control" value="{$webinfo['kf_tel']}" name="kf_tel">
-        </div>
+    
+    <div class="form-group">
+    	<label class="col-sm-2 control-label"></label>
+    	<div class="col-sm-4">
+    		<img {if condition="isset($webinfo['qrcode'])"}src="{$webinfo['qrcode']}"{/if} class="qrcode-img" width="100" alt="" />
+    	</div>
     </div>
-     <div class="form-group">
-        <label class="col-sm-2 control-label">咨询电话</label>
+    
+         <div class="form-group">
+        <label class="col-sm-2 control-label">关注引导语</label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" value="{$webinfo['zx_tel']}" name="zx_tel">
+            <input type="text" class="form-control" {if condition="isset($webinfo['sub_msg'])"}value="{$webinfo['sub_msg']}"{/if} name="sub_msg">
         </div>
     </div>
     
@@ -93,14 +105,28 @@ $(function(){
 	$('.uploadfile').change(function(){
 		$('form').ajaxSubmit({
 			url: "{:url('upload_file')}",
+			data:{flag:'uploadfile'},
 			success: function(res){
 				$('.bg_pic').val(res.path);
 				$('.div-img').attr('src',res.path);
 			}
 		});
 	});
+	$('.uploadqrcode').change(function(){
+		$('form').ajaxSubmit({
+			url: "{:url('upload_file')}",
+			data:{flag:'uploadqrcode'},
+			success: function(res){
+				$('.qrcode').val(res.path);
+				$('.qrcode-img').attr('src',res.path);
+			}
+		});
+	});
 	$('.selectfile').click(function(){
 		$('.uploadfile').click();
+	});
+	$('.selectQrcode').click(function(){
+		$('.uploadqrcode').click();
 	});
 	$('form').submit(function(){
 		$(this).ajaxSubmit({

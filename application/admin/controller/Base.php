@@ -1,7 +1,7 @@
 <?php
 namespace app\admin\controller;
-use think\facade\Request;
 use app\common\Common;
+use think\facade\Request;
 
 class Base extends Common {
     
@@ -39,8 +39,14 @@ class Base extends Common {
             ],
             [
                 'url' => url('system/config'),
-                'title' => '基础设置',
+                'title' => '系统设置',
                 'icon' => 'fa fa-cog',
+                'submenu' => [
+                    ['title' => '基础设置',
+                     'url' => url('system/config'),],
+                    ['title' => '客服资料',
+                     'url' => url('system/kfset'),]
+                ],
             ],
         ];
         $this->assign('permissions',$permissions);

@@ -52,6 +52,26 @@ class Login extends Controller {
         }
     }
     
+    public function regcode(){
+        if ($this->request->isAjax() && $this->request->isPost()) {
+            $mobile = $this->request->post('mobile');
+            $type = $this->request->post('op');
+            $message = new \service\Message();
+            if ($type == 'forgetcode'){
+                if ($message->sendreg($this->request)){
+                    $this->success("验证码发送成功");
+                }
+                $this->error("验证码发送失败");
+            }elseif ($type == 'checkcode'){
+                if ($message->regcheck($this->request)){
+                    $this->success('验证成功');
+                }else{
+                    $this->error('验证码错误!');
+                }
+            }
+        }
+    }
+    
     public function find(){
         if ($this->request->isAjax() && $this->request->isPost()) {
             $mobile = $this->request->post('mobile');
@@ -135,7 +155,9 @@ class Login extends Controller {
             $data['wechat'] = $wechat;
             $data['create_time'] = time();
             $data['update_time'] = time();
-            
+            if (!Session::has('check_status') && session('check_status') == 'success'){
+                $this->error('验证码错误!');
+            }
             $find = db('users')->where(['mobile' => $mobile])->find();
             if (!empty($find)) $this->error('手机号码已存在!');
             
@@ -152,7 +174,9 @@ class Login extends Controller {
             
             if (Db::name('users')->insert($data) == 1){
                 $this->loginService($mobile, $password);
-                $this->success('注册成功',url('index/index'));
+                $message = new \service\Message();
+                $message->clear($mobile);
+                $this->success('注册成功',url('Qrcode/index'));
             }else{
                 $this->error('注册失败，请重试');
             }

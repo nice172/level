@@ -192,13 +192,30 @@ class Message {
         }
         
         file_put_contents($filename, json_decode($response,true)."\r\n", FILE_APPEND);
-        // echo "发送短信(sendSms)接口返回的结果:\n";
-        // print_r($response);
-        // $response = SmsDemo::sendBatchSms();
-        // echo "批量发送短信(sendBatchSms)接口返回的结果:\n";
-        // print_r($response);
         if (isset($response->Code) && $response->Code == 'OK'){
             session($mobile.'_forgetcode', $checkcode);
+            return true;
+        }
+        return false;
+    }
+    
+    public function sendreg(Request $request){
+        $mobile = $request->post('mobile');
+        // 限制发送次数
+        // todo.....
+        $checkcode = mt_rand(10000,99999);
+        
+        $response = self::sendSms($mobile, 'SMS_53040036', ['code' => $checkcode,'product' => '创客新零售平台']);
+        $filename = '../msglog/msglog.txt';
+        if (file_exists($filename)){
+            if(filesize($filename) >= 2097152){
+                rename($filename, '../msglog/msglog_bak_'.date('YmdHis').'.txt');
+            }
+        }
+        
+        file_put_contents($filename, json_decode($response,true)."\r\n", FILE_APPEND);
+        if (isset($response->Code) && $response->Code == 'OK'){
+            session($mobile.'_regcode', $checkcode);
             return true;
         }
         return false;
@@ -221,9 +238,21 @@ class Message {
         }
     }
     
+    public function regcheck(Request $request){
+        $mobile = $request->post('mobile');
+        $code = $request->post('code');
+        if (session($mobile.'_regcode') == $code){
+            session('check_status','success');
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     public function clear($mobile){
         session('check_status',null);
         session($mobile.'_forgetcode', null);
+        session($mobile.'_regcode', null);
     }
     
 }

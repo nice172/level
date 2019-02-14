@@ -50,10 +50,10 @@
         <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="mobile" placeholder="请输入商家手机号码"  value="" /></div></div></div>
         <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="wechat" placeholder="请输入商家微信号"  value="" /></div></div></div>
         <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="truename" placeholder="请输入商家姓名"  value="" /></div></div></div>
-        <!--<div style="position: relative;">
+        <div style="position: relative;">
           <div class="line" style="width: 67%;"><div class="title"><img src="__IMG__/tel.png" alt=""></div><div class='info'><div class='inner'><input type="text" id='code' placeholder="请输入验证码"  value="" /></div></div></div>
           <input id="btnSendCode" type="button" value="发送验证码"  />
-        </div>-->
+        </div>
         <div class="line"><div class="title"><img src="__IMG__/upsw.png" alt=""></div><div class='info'><div class='inner'><input type="password" id="password" placeholder="请输入商家登录初始密码"  value="" /></div></div></div>
          <div class="line"><div class="title"><img src="__IMG__/upsw.png" alt=""></div><div class='info'><div class='inner'><input type="password" id="cpassword" placeholder="请确认密码"  value="" /></div></div></div>
     </div>
@@ -69,7 +69,7 @@
         $('.forget').click(function(){
             location.href = "{:url('index')}";
           });
-        	/*
+        	
             var InterValObj; //timer变量，控制时间
             var count = 60; //间隔函数，1秒执行
             var curCount;//当前剩余秒数
@@ -80,18 +80,18 @@
                 }
                 curCount = count;
             　　
-                 core.json('member/sendcode', {
+                 core.json("{:url('regcode')}", {
                        'mobile': $('#mobile').val(),
                        'op':'forgetcode'
                        }, function(json) {
-                        if(json.status==1){
+                        if(json.code==1){
                              //设置button效果，开始计时
                              $("#btnSendCode").attr("disabled", "true");
                              $("#btnSendCode").val(curCount + "秒后重新获取验证码");
                              InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
                         　　  				//向后台发送处理数据 
                         }else{
-                            core.tip.show(json.result);
+                            core.tip.show(json.msg);
                         }
                     },true);
             });
@@ -107,7 +107,7 @@
                     $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
                 }
             }
-            */
+            
             $('.info_sub').click(function() {
             	if($('#username').isEmpty()){
                     core.tip.show('请输入推荐人!');
@@ -144,35 +144,35 @@
                        return;
                   }
                   //检验验证码
-                  /*
-                    core.json('member/sendcode', {
+                    core.json("{:url('regcode')}", {
                         'code': $('#code').val(),
                         'op':'checkcode'
                        }, function(json) {
    
-                      if(json.status == 0)
+                      if(json.code == 0)
                       {
-                       core.tip.show(json.result.msg);
+                       core.tip.show(json.msg);
                        return;
                       }
-                        //register post
-                    },true,true);*/
-                  core.json("{:url()}", {
-                      'memberdata':{
-                           'q': '{$q}',
-                           'recommend_name': $('#username').val(),
-                           'mobile': $('#mobile').val(),
-                           'wechat': $('#wechat').val(),
-                           'truename': $('#truename').val(),
-                           'password': $('#password').val(),
-                           'cpassword': $('#cpassword').val()
-                          }
-                      }, function(json) {
-                    	  core.tip.show(json.msg);
-                       if(json.code==1){
-                          setTimeout(() => {window.location.href=json.url;},1500);
-                       }
-                   },true,true);
+                      core.json("{:url()}", {
+                          'memberdata':{
+                               'q': '{$q}',
+                               'recommend_name': $('#username').val(),
+                               'mobile': $('#mobile').val(),
+                               'wechat': $('#wechat').val(),
+                               'truename': $('#truename').val(),
+                               'password': $('#password').val(),
+                               'cpassword': $('#cpassword').val()
+                              }
+                          }, function(json) {
+                        	  core.tip.show(json.msg);
+                           if(json.code==1){
+                              setTimeout(() => {window.location.href=json.url;},1500);
+                           }
+                       },true,true);
+
+                    },true,true);
+
                 });
     })
 </script>

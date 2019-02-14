@@ -15,10 +15,12 @@ class User extends Base {
     		$recommend_info = db('check_log c')
     		->join('__USERS__ u','c.check_uid=u.id')
     		->where(['c.log_id' => $message_log['id']])
-    		->field('c.*,u.wechat,u.username,u.mobile')->order('c.id asc')->select();
+    		->field('c.*,u.level,u.wechat,u.username,u.mobile')->order('c.id asc')->select();
     		
+    		$this->assign('update_level',$message_log['level']); //升级数
     		$this->assign('recommend', $recommend_info);
-    		$this->assign('level_num', $this->user['level']);
+    		$this->assign('level_num', $this->user['level']); //当前等级
+    		$this->assign('levelAll', $this->level());
     		return $this->fetch('message');
     	}
     	
@@ -271,7 +273,7 @@ class User extends Base {
     }
     
     public function team(){
-    	
+        /*
     	$count = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
     	->join('__USERS__ u','u.id=a.user_id')
     	->where(['c.check_uid' => $this->user['id']])
@@ -283,14 +285,15 @@ class User extends Base {
     	$users = db('check_log c')->join('__APPLY__ a','c.log_id=a.id')
     	->where(['a.status' => 1,'c.check_uid' => $this->user['id']])
     	->where('c.check_time','<>',0)->field('a.*,c.check_time')->paginate(1000);
-    	$userList = $users->all();
+    	*/
+        $userList = db('users')->where(['recommend_uid' => $this->user['id']])->field('mobile,wechat,level,username')->select();
     	foreach ($userList as $key => $value) {
-    		$find = db('users')->where(['id' => $value['user_id']])->field('wechat,level,username')->find();
-    		$userList[$key]['wechat'] = $find['wechat'];
-    		$userList[$key]['username'] = $find['username'];
-    		if ($find['level']){
+//     		$find = db('users')->where(['id' => $value['user_id']])->field('wechat,level,username')->find();
+//     		$userList[$key]['wechat'] = $find['wechat'];
+//     		$userList[$key]['username'] = $find['username'];
+    	    if ($value['level']){
 	    		foreach ($this->level() as $val){
-	    			if ($find['level'] == $val['level']){
+	    		    if ($value['level'] == $val['level']){
 	    				$userList[$key]['level_text'] = $val['name'];
 	    				break;
 	    			}
@@ -299,8 +302,11 @@ class User extends Base {
     			$userList[$key]['level_text'] = '普通会员';
     		}
     	}
+    	$count = db('users')->where(['recommend_uid' => $this->user['id']])
+    	->where("level",'>',0)->count("id");
     	$this->assign('users', $userList);
-    	$this->assign('total', $users->total());
+    	$this->assign('count', $count);
+    	$this->assign('total', count($userList));
     	return $this->fetch();
     }
     

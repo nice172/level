@@ -12,10 +12,16 @@ class System extends Base {
     
     public function upload_file(){
         // 获取表单上传文件 例如上传了001.jpg
-        $file = request()->file('file');
+        $type = $this->request->post('flag');
+        if($type == 'uploadqrcode'){
+            $file = request()->file('uploadqrcode');
+        }else{
+            $file = request()->file('file');
+        }
         if (empty($file)){
             $file = request()->file('Filedata');
         }
+        
         if (empty($file)) return [];
         $upload_dir = './uploads';
         
@@ -65,6 +71,9 @@ class System extends Base {
                'kf_name' => $this->request->post('kf_name'),
                'kf_tel' => $this->request->post('kf_tel'),
                'zx_tel' => $this->request->post('zx_tel'),
+                'qrcode' => $this->request->post('qrcode'),
+                'init_count' => $this->request->post('init_count'),
+                'sub_msg' => $this->request->post('sub_msg'),
                'share_title' => $this->request->post('share_title'),
                'share_desc' => $this->request->post('share_desc'),
                'notice' => $this->request->post('notice'),
@@ -73,13 +82,30 @@ class System extends Base {
             if (!is_writable($filename)){
                 $this->error("没权限写入");
             }
-            $flag = file_put_contents('../config/webinfo.php', "<?php\r\n// 这个不要删除\r\nreturn ".var_export($config,true).";\r\n?>");
+            $flag = file_put_contents($filename, "<?php\r\n// 这个不要删除\r\nreturn ".var_export($config,true).";\r\n?>");
             if ($flag){
                 $this->success("保存成功");
             }else{
                 $this->error("保存失败");
             }
         }
+    }
+    
+    public function kfset(){
+        if ($this->request->isAjax() && $this->request->isPost()) {
+            $config = $this->request->post();
+            $flag = file_put_contents('../config/kf.php', "<?php\r\n// 这个不要删除\r\nreturn ".var_export($config,true).";\r\n?>");
+            if ($flag){
+                $this->success("保存成功");
+            }else{
+                $this->error("保存失败");
+            }
+            return;
+        }
+        $kf = config()['kf'];
+        $this->assign('kf',$kf);
+        $this->assign('hideForm',true);
+        return $this->fetch();
     }
     
 }

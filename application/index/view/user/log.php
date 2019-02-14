@@ -136,7 +136,7 @@ label{font-weight:normal;}
 	  <div class="weui-form-preview__bd">
 	    <div class="weui-form-preview__item">
 	      <label class="weui-form-preview__label">会员编号：</label>
-	      <span class="weui-form-preview__value">{$value['user_id']}</span>
+	      <span class="weui-form-preview__value">{$value['user_id']+$init_count}</span>
 	    </div>
 	    <div class="weui-form-preview__item">
 	      <label class="weui-form-preview__label">姓名：</label>

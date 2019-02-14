@@ -12,7 +12,7 @@ a,a:hover,a:active{color: #282828;text-decoration: none;}
 		<div class="weui-cells" style="margin-top:10px">
 		       <a class="weui-cell weui-cell_access" href="{:url('info')}">
 		         <div class="weui-cell__bd">
-		           <p>修改个人资料：{$user['id']}</p>
+		           <p>修改个人资料</p>
 		         </div>
 		         <div class="weui-cell__ft"></div>
 		       </a>

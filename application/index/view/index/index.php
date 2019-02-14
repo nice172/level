@@ -170,10 +170,9 @@ p{
 }
 </style>
 <div class="rucian_tb">
-   <p>ID：{$user['id']}</p>
+   <p>ID：{$user_id}</p>
    <p>等级：{$user['level_text']}</p>
    <p>姓名：{$user['username']}</p>
-    <p>推荐码： 暂无</p>
 </div>
 
 <a href="{:url('set')}"><div class="u-set"><img src="__IMG__/set.png"></div></a>
@@ -215,9 +214,9 @@ p{
 </div>
 
 <div class="rucian_kf">
-    <p>客服姓名：{$webinfo['kf_name']}</p>
-    <p>客服电话：{$webinfo['kf_tel']}</p>
-    <p>咨询电话：{$webinfo['zx_tel']}</p>
+	<?php foreach ($kf_title as $key => $tit){?>
+    	<p><?php echo $tit;?>：<?php if (isset($kf_value[$key])){echo $kf_value[$key];};?></p>
+    <?php }?>
 </div>
 <a href="{:url('login/logout')}" class="rucian_aaaa">退出登录</a>
 {/block}

@@ -136,19 +136,19 @@ label{font-weight:normal;}
 	  <div class="weui-form-preview__bd">
 	    <div class="weui-form-preview__item">
 	      <label class="weui-form-preview__label">会员编号：</label>
-	      <span class="weui-form-preview__value">{$value['user_id']} {if condition="!$value['check_time']"}<button style="float: right;margin-bottom:5px;" item="{$value['id']}" class="btn btn-default agree btn-xs">同意</button>{/if}</span>
+	      <span class="weui-form-preview__value">{$value['user_id']+$init_count} {if condition="!$value['check_time']"}<button style="float: right;" item="{$value['id']}" class="btn btn-default agree btn-sm">同意</button>{/if}</span>
 	    </div>
 	    <div class="weui-form-preview__item">
 	      <label class="weui-form-preview__label">姓名：</label>
-	      <span class="weui-form-preview__value">{$value['username']} {if condition="!$value['check_time']"}<button style="float: right;" item="{$value['id']}" class="btn btn-default reject btn-xs">拒绝</button>{/if}</span>
+	      <span class="weui-form-preview__value" style="padding-bottom: 5px;">{$value['username']}</span>
 	    </div>
 	    <div class="weui-form-preview__item">
 	      <label class="weui-form-preview__label">准等级：</label>
-	      <span class="weui-form-preview__value">{$value['level_text']}</span>
+	      <span class="weui-form-preview__value">{$value['level_text']} {if condition="!$value['check_time']"}<button style="float: right;" item="{$value['id']}" class="btn btn-default reject btn-sm">拒绝</button>{/if}</span>
 	    </div>
 	    	    <div class="weui-form-preview__item">
 	      <label class="weui-form-preview__label">手机号码：</label>
-	      <span class="weui-form-preview__value">{$value['mobile']}</span>
+	      <span class="weui-form-preview__value" style="padding-bottom: 5px;">{$value['mobile']}</span>
 	    </div>
 	    	    <div class="weui-form-preview__item">
 	      <label class="weui-form-preview__label">微信号：</label>
