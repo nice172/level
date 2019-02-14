@@ -11,6 +11,10 @@ class Login extends Controller {
         $this->assign('domain',$this->request->domain());
     }
     
+    public function _empty(){
+        $this->redirect(url('index/index'));
+    }
+    
     public function index(){
         self::_isLogin();
         if ($this->request->isAjax() && $this->request->isPost()) {
