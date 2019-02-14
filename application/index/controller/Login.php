@@ -34,6 +34,9 @@ class Login extends Controller {
     public function sendcode(){
         if ($this->request->isAjax() && $this->request->isPost()) {
             $mobile = $this->request->post('mobile');
+            if (empty($mobile)) {
+            	$this->error("请输入手机号码");
+            }
             $type = $this->request->post('op');
             $message = new \service\Message();
             if ($type == 'forgetcode'){
@@ -59,6 +62,9 @@ class Login extends Controller {
     public function regcode(){
         if ($this->request->isAjax() && $this->request->isPost()) {
             $mobile = $this->request->post('mobile');
+            if (empty($mobile)) {
+            	$this->error("请输入手机号码");
+            }
             $type = $this->request->post('op');
             $message = new \service\Message();
             if ($type == 'forgetcode'){

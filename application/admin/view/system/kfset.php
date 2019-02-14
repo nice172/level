@@ -4,7 +4,7 @@
 <style>.form-padding{padding-top:10px;}</style>
 <form class="form-inline ajaxPost" action="?" method="post">
 	<div>  <div class="form-group">
-    <label for="title">客服姓名</label>
+    <label for="title"></label>
     <input type="text" class="form-control" {if condition="isset($kf['title'][0])"}value="{$kf['title'][0]}"{/if} name="title[]" />
   </div>
   <div class="form-group">
@@ -13,7 +13,7 @@
   </div></div>
 <div class="form-padding">
     <div class="form-group">
-    <label for="title">客服电话</label>
+    <label for="title"></label>
     <input type="text" class="form-control" {if condition="isset($kf['title'][1])"}value="{$kf['title'][1]}"{/if} name="title[]" />
   </div>
   <div class="form-group">
@@ -23,7 +23,7 @@
 </div>
 <div class="form-padding">
     <div class="form-group">
-    <label for="title">咨询电话</label>
+    <label for="title"></label>
     <input type="text" class="form-control" {if condition="isset($kf['title'][2])"}value="{$kf['title'][2]}"{/if} name="title[]" />
   </div>
   <div class="form-group">

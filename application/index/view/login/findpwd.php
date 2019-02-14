@@ -54,6 +54,7 @@
             var count = 60; //间隔函数，1秒执行
             var curCount;//当前剩余秒数
             $('#btnSendCode').click(function(){
+            	if(curCount > 0) return;
                 if(!$('#mobile').isMobile()){
                     core.tip.show('请输入正确手机号码!');
                     return;
@@ -66,12 +67,13 @@
                         if(json.code==1){
                              //设置button效果，开始计时
                              $("#btnSendCode").attr("disabled", "true");
-                             $("#btnSendCode").val(curCount + "秒后重新获取验证码");
+                             $("#btnSendCode").val(curCount + "秒");
                              InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
                              //alert(json.msg);
                         　　 				//向后台发送处理数据 
                         }else{
                             core.tip.show(json.msg);
+                            curCount = 0;
                         }
                     },true,true);
             });
@@ -80,11 +82,11 @@
                 if (curCount == 0) {                
                     window.clearInterval(InterValObj);//停止计时器
                     $("#btnSendCode").removeAttr("disabled");//启用按钮
-                    $("#btnSendCode").val("重新发送验证码");
+                    $("#btnSendCode").val("重新发送");
                 }
                 else {
                     curCount--;
-                    $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+                    $("#btnSendCode").val(curCount + "秒内输入");
                 }
             }
             $('.info_sub').click(function() {

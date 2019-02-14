@@ -48,18 +48,18 @@
     <div class="info_main">
         <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="username" readonly="readonly" placeholder="请输入推荐人" {if condition="isset($recommend_user)"}value="{$recommend_user}"{/if} /></div></div></div>
         <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="mobile" placeholder="请输入商家手机号码"  value="" /></div></div></div>
-        <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="wechat" placeholder="请输入商家微信号"  value="" /></div></div></div>
-        <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="truename" placeholder="请输入商家姓名"  value="" /></div></div></div>
         <div style="position: relative;">
           <div class="line" style="width: 67%;"><div class="title"><img src="__IMG__/tel.png" alt=""></div><div class='info'><div class='inner'><input type="text" id='code' placeholder="请输入验证码"  value="" /></div></div></div>
           <input id="btnSendCode" type="button" value="发送验证码"  />
         </div>
+        <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="wechat" placeholder="请输入商家微信号"  value="" /></div></div></div>
+        <div class="line"><div class="title"><img src="__IMG__/uname.png" alt=""></div><div class='info'><div class='inner'><input type="text" id="truename" placeholder="请输入商家姓名"  value="" /></div></div></div>
         <div class="line"><div class="title"><img src="__IMG__/upsw.png" alt=""></div><div class='info'><div class='inner'><input type="password" id="password" placeholder="请输入商家登录初始密码"  value="" /></div></div></div>
          <div class="line"><div class="title"><img src="__IMG__/upsw.png" alt=""></div><div class='info'><div class='inner'><input type="password" id="cpassword" placeholder="请确认密码"  value="" /></div></div></div>
     </div>
     <div class="info_sub">提交</div>
     <div>
-      <div class="forget"><a href="javascript:;">已有帐号>></a></div>
+      <div class="forget" style="padding-bottom:20px;"><a href="javascript:;">已有帐号>></a></div>
     </div>
 </script>
 <script type="text/javascript">
@@ -74,12 +74,12 @@
             var count = 60; //间隔函数，1秒执行
             var curCount;//当前剩余秒数
             $('#btnSendCode').click(function(){
+            	if(curCount > 0) return;
                 if(!$('#mobile').isMobile()){
                     core.tip.show('请输入正确手机号码!');
                     return;
                 }
                 curCount = count;
-            　　
                  core.json("{:url('regcode')}", {
                        'mobile': $('#mobile').val(),
                        'op':'forgetcode'
@@ -87,24 +87,25 @@
                         if(json.code==1){
                              //设置button效果，开始计时
                              $("#btnSendCode").attr("disabled", "true");
-                             $("#btnSendCode").val(curCount + "秒后重新获取验证码");
+                             $("#btnSendCode").val(curCount + "秒");
                              InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
                         　　  				//向后台发送处理数据 
                         }else{
                             core.tip.show(json.msg);
+                            curCount = 0;
                         }
-                    },true);
+                    },true,true);
             });
             //timer处理函数
             function SetRemainTime() {
                 if (curCount == 0) {                
                     window.clearInterval(InterValObj);//停止计时器
                     $("#btnSendCode").removeAttr("disabled");//启用按钮
-                    $("#btnSendCode").val("重新发送验证码");
+                    $("#btnSendCode").val("重新发送");
                 }
                 else {
                     curCount--;
-                    $("#btnSendCode").val("请在" + curCount + "秒内输入验证码");
+                    $("#btnSendCode").val(curCount + "秒内输入");
                 }
             }
             

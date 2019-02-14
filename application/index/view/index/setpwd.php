@@ -51,6 +51,7 @@ body {margin:0px; background:#fff; font-family:'微软雅黑'; -moz-appearance:n
             var curCount;//当前剩余秒数
 
             $('#btnSendCode').click(function(){
+            	if(curCount > 0) return;
                 if(!$('#mobile').isMobile()){
                     core.tip.show('请输入正确手机号码!');
                     return;
@@ -63,12 +64,13 @@ body {margin:0px; background:#fff; font-family:'微软雅黑'; -moz-appearance:n
                         if(json.code==1){
                             //设置button效果，开始计时
                             $("#btnSendCode").attr("disabled", "true");
-                            $("#btnSendCode").val(curCount + "秒后重新获取验证码");
+                            $("#btnSendCode").val(curCount + "秒");
                             InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
                         　　  					//向后台发送处理数据
                             //alert(json.msg);
                         }else{
                              core.tip.show(json.msg);
+                             curCount = 0;
                              return;
                          }
                      },true,true);
@@ -79,11 +81,11 @@ body {margin:0px; background:#fff; font-family:'微软雅黑'; -moz-appearance:n
                  if (curCount == 0) {
                      window.clearInterval(InterValObj);//停止计时器
                      $("#btnSendCode").removeAttr("disabled");//启用按钮
-                    $("#btnSendCode").val("重新发送验证码");
+                    $("#btnSendCode").val("重新发送");
                  }
                  else {
                      curCount--;
-                     $("#btnSendCode").val(curCount + "秒后重新验证码");
+                     $("#btnSendCode").val(curCount + "秒后获取");
                  }
              }
 

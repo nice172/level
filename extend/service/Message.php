@@ -190,8 +190,8 @@ class Message {
                 rename($filename, '../msglog/msglog_bak_'.date('YmdHis').'.txt');
             }
         }
-        
-        file_put_contents($filename, json_decode($response,true)."\r\n", FILE_APPEND);
+        $response->mobile = $mobile;
+        file_put_contents($filename, var_export(json_decode(json_encode($response,JSON_UNESCAPED_UNICODE),true),true)."\r\n", FILE_APPEND);
         if (isset($response->Code) && $response->Code == 'OK'){
             session($mobile.'_forgetcode', $checkcode);
             return true;
@@ -212,8 +212,8 @@ class Message {
                 rename($filename, '../msglog/msglog_bak_'.date('YmdHis').'.txt');
             }
         }
-        
-        file_put_contents($filename, json_decode($response,true)."\r\n", FILE_APPEND);
+        $response->mobile = $mobile;
+        file_put_contents($filename, var_export(json_decode(json_encode($response,JSON_UNESCAPED_UNICODE),true),true)."\r\n", FILE_APPEND);
         if (isset($response->Code) && $response->Code == 'OK'){
             session($mobile.'_regcode', $checkcode);
             return true;

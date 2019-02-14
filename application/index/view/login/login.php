@@ -39,7 +39,7 @@
     
     <div class="info_sub">登录</div>
     <div>
-      <div class="register"><a href="{:url('register')}">注册账号</a></div>
+      <!--<div class="register"><a href="{:url('register')}">注册账号</a></div>-->
       <div class="forget"><a href="{:url('find')}">忘记密码</a></div>
     </div>
 </script>
