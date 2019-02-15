@@ -68,6 +68,8 @@ class Login extends Controller {
             $type = $this->request->post('op');
             $message = new \service\Message();
             if ($type == 'forgetcode'){
+                $find = db('users')->where(['mobile' => $mobile])->find();
+                if (!empty($find)) $this->error('手机号码已被注册!');
                 if ($message->sendreg($this->request)){
                     $this->success("验证码发送成功");
                 }
@@ -169,7 +171,7 @@ class Login extends Controller {
                 $this->error('验证码错误!');
             }
             $find = db('users')->where(['mobile' => $mobile])->find();
-            if (!empty($find)) $this->error('手机号码已存在!');
+            if (!empty($find)) $this->error('手机号码已被注册!');
             
             $find = db('users')->where(['wechat' => $wechat])->find();
             if (!empty($find)) $this->error('微信号已存在!');

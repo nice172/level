@@ -147,6 +147,7 @@
                   //检验验证码
                     core.json("{:url('regcode')}", {
                         'code': $('#code').val(),
+                        'mobile': $('#mobile').val(),
                         'op':'checkcode'
                        }, function(json) {
    
