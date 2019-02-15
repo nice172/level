@@ -125,15 +125,15 @@ margin-bottom: 5% !important;
 			<div class="rucian_sj">
 			{if condition="$level_num==0"}
     			{if condition="$key==0"}
-    				<div><h6 style="text-align: center;">推荐人</h6></div>
+    				<div><h6 style="text-align: center;">推荐人<span style="float: right;color:red;">{if condition="$value['check_status']==1"}已审核{elseif condition="$value['check_status']==2"}拒绝{else}未审核{/if}</span></h6></div>
     			{else}
-    				<div><h6 style="text-align: center;">五星会员</h6></div>
+    				<div><h6 style="text-align: center;">五星会员<span style="float: right;color:red;">{if condition="$value['check_status']==1"}已审核{elseif condition="$value['check_status']==2"}拒绝{else}未审核{/if}</span></h6></div>
     			{/if}
 			{else}
 				{if condition="$key==0"}
-    				<div><h6 style="text-align: center;">五星会员</h6></div>
+    				<div><h6 style="text-align: center;">五星会员<span style="float: right;color:red;">{if condition="$value['check_status']==1"}已审核{elseif condition="$value['check_status']==2"}拒绝{else}未审核{/if}</span></h6></div>
     			{else}
-    				<div><h6 style="text-align: center;">九星会员</h6></div>
+    				<div><h6 style="text-align: center;">九星会员<span style="float: right;color:red;">{if condition="$value['check_status']==1"}已审核{elseif condition="$value['check_status']==2"}拒绝{else}未审核{/if}</span></h6></div>
     			{/if}
 			{/if}
 			<div>姓名：{$value['username']}</div>
@@ -151,7 +151,7 @@ margin-bottom: 5% !important;
 			        break;
 			    }
 			}?>
-		</h6></div>
+		<span style="float: right;color:red;">{if condition="$value['check_status']==1"}已审核{elseif condition="$value['check_status']==2"}拒绝{else}未审核{/if}</span></h6></div>
 			<div>姓名：{$value['username']}</div>
 			<div>手机号码：{$value['mobile']}</div>
 			<div>微信号：{$value['wechat']}</div>
@@ -159,7 +159,7 @@ margin-bottom: 5% !important;
 		{/foreach}
 	{/if}
 
-<a href="javascript:;" class="rucian_tj flex flex-center" id="tijiao">等待审核</a>
+<!-- <a href="javascript:;" class="rucian_tj flex flex-center" id="tijiao">等待审核</a> -->
 {/block}
 {block name="footer"}
 <script>

@@ -15,7 +15,10 @@
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content">
-    <div class="ibox-title">首页 / {block name="menu"}{/block}</div>
+    <div class="ibox-title" style="position: relative;">
+    <span>首页 / {block name="menu"}{/block}</span>
+    {block name="back"}{/block}
+    </div>
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">

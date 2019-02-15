@@ -1,5 +1,6 @@
 {extend name="public:form" /}
 {block name="menu"}会员管理 / 创建会员{/block}
+{block name="back"}<span class="btn btn-white" onclick="history.back()" style="position:absolute;top:5px;right:10px;">返回</span>{/block}
 {block name="class"}ajaxPost{/block}
 {block name='action'}{:url('create')}{/block}
 {block name="form"}

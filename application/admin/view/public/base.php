@@ -35,7 +35,9 @@
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content">
-    <div class="ibox-title">首页 / {block name="menu"}{/block}</div>
+    <div class="ibox-title" style="position: relative;"><span>首页 / {block name="menu"}{/block}</span>
+    {block name="back"}{/block}
+    </div>
     <form role="form" class="form-inline">
     <div class="ibox-title">
             {block name="search"}{/block}

@@ -109,11 +109,13 @@ class Users extends Base {
     			foreach ($recommend_info as $v){
     				$checkStatus[] = $v['check_status'];
     			}
+    			/*
     			if (count(array_unique($checkStatus)) == 1){
-    				$data[$key]['status'] = 1;
+    			    $data[$key]['status'] = 1;
     			}else{
-    				$data[$key]['status'] = 0;
+    			    $data[$key]['status'] = 0;
     			}
+    			*/
     		}else{
     			$checkStatus = $recommend_info[0]['check_status'];
     			$data[$key]['status'] = 0;

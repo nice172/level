@@ -1,5 +1,6 @@
 {extend name="public:form" /}
 {block name="menu"}会员管理 / 用户资料{/block}
+{block name="back"}<span class="btn btn-white" onclick="history.back()" style="position:absolute;top:5px;right:10px;">返回</span>{/block}
 {block name="main"}
 <style>.user_info{font-weight:normal;}</style>
 <h4 class="user_info">会员编号：{$userinfo['id']}</h4>

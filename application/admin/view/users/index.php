@@ -1,5 +1,6 @@
 {extend name="public:base" /}
 {block name="menu"}会员管理{/block}
+{block name="back"}<span class="btn btn-white" onclick="history.back()" style="position:absolute;top:5px;right:10px;">返回</span>{/block}
 {block name="search"}
         <div class="form-group">
             <label for="start_date" class="sr-only">加入时间</label>

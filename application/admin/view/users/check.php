@@ -1,5 +1,6 @@
 {extend name="public:base" /}
 {block name="menu"}会员升级审批管理{/block}
+{block name="back"}<span class="btn btn-white" onclick="history.back()" style="position:absolute;top:5px;right:10px;">返回</span>{/block}
 {block name="search"}
         <div class="form-group">
             <label for="username" class="sr-only">姓名</label>
@@ -50,7 +51,7 @@
                 <td>{if condition="$value['recommend_info'][0]['check_time']"}{:date('Y-m-d H:i:s', $value['recommend_info'][0]['check_time'])}{/if}</td>
                 <td></td><td></td>
                 {/if}
-                <td>{if condition="$value['status']"}已审核{else}未审核{/if}</td>
+                <td>{if condition="$value['status']==1"}已审核{elseif condition="$value['status']==2"}拒绝{else}未审核{/if}</td>
             </tr>
         {/foreach}
     {/if}

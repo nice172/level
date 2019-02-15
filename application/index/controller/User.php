@@ -206,11 +206,17 @@ class User extends Base {
     				$check_log = db('check_log')->where(['log_id' => $find['log_id']])->select();
     				$check_status = [];
     				foreach ($check_log as $value){
-    					$check_status[] = $value['check_status'];
+    				    if ($value['check_time'] != 0){
+    					   $check_status[] = $value['check_status'];
+    				    }
     				}
-    				$status = 2;
-    				if (count(array_unique($check_status)) == 1){
-    					$status = 1;
+    				if (count($check_log) == count($check_status)){
+    				    $status = 2;
+    				    if (count(array_unique($check_status)) == 1){
+    				        $status = 1;
+    				    }
+    				}else{
+    				    $status = 0;
     				}
     			}else{
     				$check_log = db('check_log')->where(['log_id' => $find['log_id']])->find();
@@ -221,9 +227,16 @@ class User extends Base {
     			}
     			
     			$a = db('apply')->where(['id' => $find['log_id']])->update(['status' => $status]);
-    			$b = db('users')->where(['id' => $apply['user_id']])->update(['level' => $apply['level']]);
-    			if ($a && $b) {
-    				db()->commit();
+    			if ($a) {
+    			    
+    			    $applyInfo = db('apply')->where(['id' => $find['log_id']])->find();
+    			    if($applyInfo['status'] == 1){
+    			        $b = db('users')->where(['id' => $apply['user_id']])->update(['level' => $applyInfo['level']]);
+    			        if($b){
+    			            db()->commit();
+    			        }
+    			    }
+    				
     			}
     			$this->success('操作成功');
     		}
