@@ -7588,7 +7588,7 @@ body.skin-3 {
     color: rgba(255, 255, 255, .3);
 }
 
-@media (max-width: 350px) {
+@media (max-width: 500px) {
     body.fixed-sidebar.mini-navbar .navbar-static-side {
         width: 0;
     }
